@@ -1,0 +1,15 @@
+{
+    "extends": "./tsconfig.json", // Extend your main tsconfig
+    "include": ["src/**/*"], // Include all files in the src directory
+    "exclude": [
+      "node_modules",
+      "**/*.spec.ts",
+      "**/*.test.ts",
+      "postcss.config.js"
+    ],
+    "compilerOptions": {
+      "composite": false, // Disable composite for ESLint
+      "noEmit": true // No emit, since this is just for linting
+    }
+  }
+  

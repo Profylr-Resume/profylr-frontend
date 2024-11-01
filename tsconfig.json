@@ -1,0 +1,30 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "forceConsistentCasingInFileNames": true,
+    "strict": true, // Enables all strict type-checking options
+    "noImplicitAny": true, // Ensure no variables have an implicit 'any' type
+    "noUnusedLocals": true, // Disallow unused local variables
+    "noUnusedParameters": true, // Disallow unused parameters in functions
+    "exactOptionalPropertyTypes": true, // Ensure precise types for optional properties
+
+    "noImplicitThis": true, // Raise error on 'this' expressions with an implied 'any' type
+  },
+  "include": [
+    "src/**/*" // Include all files in the src directory
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "postcss.config.js" // Exclude any non-TypeScript files if necessary
+  ]
+}

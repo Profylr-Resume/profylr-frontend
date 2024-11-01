@@ -1,0 +1,98 @@
+// .eslintrc
+{
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+      
+      ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.eslint.json", // Ensure this points to your TypeScript config
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": ["react", "typescript", "@typescript-eslint", "react-hooks", "import"],
+    "rules": {
+        // React and TypeScript specific rules
+        "react/react-in-jsx-scope": "off", // Not needed in React 17+
+        "react/prop-types": "off", // Turn off if using TypeScript
+        "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }], // Warn about unused variables, ignoring variables prefixed with _
+        "react/jsx-key": "error", // Ensure each JSX element in an array has a unique key
+        
+      
+
+        // Indentation and code formatting
+        "indent": ["error", 4], // Enforce 4 spaces for indentation
+        "quotes": ["error", "double"], // Enforce double quotes
+        "semi": ["error", "always"], // Require semicolons
+        "no-duplicate-imports": "error", // Disallow duplicate imports
+    
+        // Code quality rules
+        "no-undef": "off", // TypeScript handles undefined variables
+        "no-shadow": "off", // TypeScript will check variable shadowing
+
+        "consistent-return": "error", // Enforce consistent return statements in functions
+        "no-console": "warn", // Warn about console statements
+        "no-unused-vars": "off", // Disable base rule in favor of TypeScript's version
+        "no-redeclare": "error", // Disallow variable redeclaration
+        "no-duplicate-case": "error", // Disallow duplicate case labels in switch statements
+        "no-unreachable": "error", // Disallow unreachable code
+        "prefer-const": "error", // Prefer const over let where possible
+        // "no-magic-numbers": ["warn", { "ignore": [0, 1], "enforceConst": true }], // Warn for magic numbers except 0 and 1
+    
+        // Best practices
+        "react-hooks/rules-of-hooks": "error", // Enforce rules of hooks
+        "react-hooks/exhaustive-deps": "warn", // Warn if dependencies in useEffect/useCallback are not specified
+        "react/no-danger": "warn", // Avoid using dangerouslySetInnerHTML
+        "react/no-array-index-key": "warn", // Avoid using array index as key in lists
+        "react/jsx-filename-extension": ["warn", { "extensions": [".tsx", ".ts"] }], // Allow JSX in .tsx and .ts files
+    
+    
+        // Additional TypeScript rules
+        "@typescript-eslint/explicit-function-return-type": ["warn", { "allowExpressions": true }], // Explicit return type for functions
+        "@typescript-eslint/no-explicit-any": "error", // Discourage use of the 'any' type
+        "@typescript-eslint/consistent-type-definitions": ["error", "interface"], // Prefer consistent type definitions with `interface`
+        "@typescript-eslint/ban-ts-comment": "warn",// Warn when @ts-ignore is used
+
+        "import/order": ["error", { "groups": [["builtin", "external", "internal"]] }], // Enforce a convention in import order
+        "react/jsx-pascal-case": ["error", { "allowAllCaps": true, "ignore": [] }],
+        "react/jsx-boolean-value": ["error", "always"],
+
+        "@typescript-eslint/no-unsafe-assignment": "warn", // Warn on assigning types that are not safe
+      "@typescript-eslint/explicit-module-boundary-types": "warn", // Warn when no explicit return type is specified on exported functions and classes
+
+        "@typescript-eslint/no-inferrable-types": "warn" ,// Warn when a variable can be explicitly declared with a type
+
+
+      },
+    "settings": {
+      "react": {
+        "version": "detect"
+      },
+      "import/resolver": {
+        "alias": {
+          "map": [
+            ["@", "./src"]
+          ],
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        },
+        "typescript": {
+          "alwaysTryTypes": true,
+          "project": "./tsconfig.json"
+      }
+      }
+    }
+  }
+  

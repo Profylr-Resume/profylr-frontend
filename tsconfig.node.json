@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "composite": true, // Required for project references
+    "emitDeclarationOnly": false, // Emit both .js and .d.ts files
+    "outDir": "./dist", // Set output directory if needed
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    // "noEmit": true, // Remove or set to false
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["vite.config.ts"]
+}
