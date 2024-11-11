@@ -9,6 +9,8 @@ import BasicInfo from "./components/formFileds/BasicInfo";
 import GeneratedResume from "./components/GeneratedResume";
 import ResumeForm from "./components/ResumeForm";
 import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import Persona from "./pages/Persona";
 
 function App() {
 
@@ -16,6 +18,10 @@ function App() {
         <>
             <Routes>
                 <Route path="/login" element={<Login/>} />
+                <Route path="/register" element={<Register/>} />
+                <Route path="/persona" element={<Persona/>} />
+
+
                 <Route path="/resume" element={<GeneratedResume/>} />
                 <Route path="/forms" element={<ResumeForm/>} />
                 <Route path="/education" element={<Education/>} />
@@ -24,7 +30,6 @@ function App() {
                 <Route path="/experience" element={<Experience/>} />
                 <Route path="/basicInfo" element={< BasicInfo  />} />
             </Routes>
-            {/* <BuildingInterface/> */}
         </>
     );
 }

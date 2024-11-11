@@ -1,13 +1,9 @@
 import React from "react";
+import RegisterForm from "@/components/auth/RegisterForm";
 import loginImage from "../../assets/images/login_cartoons.png";
 import graduationIcon from "../../assets/icons/graduation.png";
-import LoginForm from "../../components/auth/LoginForm";
 
-
-
-
-const Login = () => {
-
+const Register = () => {
     return (
         <main className="w-screen h-screen bg-themeBlack px-36 py-12">
             <section className="h-full w-full bg-[#e9e9e9] rounded-3xl flex " >
@@ -18,7 +14,7 @@ const Login = () => {
                 </section>
                 <section className="w-[40%] h-full bg-themeLightGreen rounded-3xl " >
                     <div className="h-full w-full p-12">
-                        <div className="h-full w-full  flex flex-col items-center  ">
+                        <div className="h-full w-full  flex flex-col items-center ">
                             {/* LOGO */}
                             <div className="h-[10%] w-full  flex items-center justify-center" >
                                 <img src={graduationIcon} alt="" className="h-10 w-10" />
@@ -30,7 +26,7 @@ const Login = () => {
                             </div>
 
                             <div className="h-[50%] w-full " >
-                                <LoginForm/>
+                                <RegisterForm/>
                             </div>
                         </div>
                     </div>
@@ -41,4 +37,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
