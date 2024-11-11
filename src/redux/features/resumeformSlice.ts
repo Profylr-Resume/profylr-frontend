@@ -11,25 +11,34 @@ const resumeFormSlice = createSlice({
     name: "resumeForm",
     initialState:initialState as InitialStateType,
     reducers: {
+
         updateBasicInfo: (state, action: PayloadAction<BasicInfoType>) => {
             state.basicInfo = action.payload;
         },
+        
+        // --------------------------------------------------------------------------------------
+
         updateEducation: (state, action: PayloadAction<EducationType>) => {
             state.education = action.payload;
         },
 
         // --------------------------------------------------------------------------------------
+        
         addExperience: (state, action: PayloadAction<ExperienceType>) => {
-            state.experience.push(action.payload);
+            state.experiences.push(action.payload);
         },
-        updateExperience: (state, action: PayloadAction<{ index: number; experience: ExperienceType }>) => {
-            const { index, experience } = action.payload;
-            if (state.experience[index]) {
-                state.experience[index] = experience;
+        updateExperience: (state, action: PayloadAction<ExperienceType>) => {
+            const { id } = action.payload;
+
+            const index = state.experiences.findIndex(e => e.id === id);
+
+            if (index !== -1) {
+                state.experiences[index] = action.payload;
             }
         },
-        removeExperience: (state, action: PayloadAction<number>) => {
-            state.experience.splice(action.payload, 1);
+        removeExperience: (state, action: PayloadAction<string>) => {
+            const id = action.payload;
+            state.experiences =  state.experiences.filter(e=>e.id !== id);
         },
 
         // --------------------------------------------------------------------------------------
@@ -37,30 +46,36 @@ const resumeFormSlice = createSlice({
         addProject: (state, action: PayloadAction<ProjectsType>) => {
             state.projects.push(action.payload);
         },
-        updateProject: (state, action: PayloadAction<{ index: number; project: ProjectsType }>) => {
-            const { index, project } = action.payload;
-            if (state.projects[index]) {
-                state.projects[index] = project;
+        updateProject: (state, action: PayloadAction<ProjectsType>) => {
+            const { id } = action.payload;
+            const projectIndex = state.projects.findIndex(project => project.id === id);
+            if (projectIndex !== -1) {
+                state.projects[projectIndex] = action.payload;
             }
         },
-        removeProject: (state, action: PayloadAction<number>) => {
-            state.projects.splice(action.payload, 1);
+        removeProject: (state, action: PayloadAction<string>) => {
+            const id = action.payload;
+            state.projects = state.projects.filter(project => project.id !== id);
         },
-
+        
         // --------------------------------------------------------------------------------------
 
         addSkill: (state, action: PayloadAction<SkillsType>) => {
             state.skills.push(action.payload);
         },
-        updateSkill: (state, action: PayloadAction<{ index: number; skill: SkillsType }>) => {
-            const { index, skill } = action.payload;
-            if (state.skills[index]) {
-                state.skills[index] = skill;
+        updateSkill: (state, action: PayloadAction<SkillsType>) => {
+            const { id } = action.payload;
+    
+            const skillIndex = state.skills.findIndex(skill => skill.id === id);
+
+            if (skillIndex !== -1) {
+                state.skills[skillIndex] = action.payload;
             }
         },
-        removeSkill: (state, action: PayloadAction<number>) => {
-            state.skills.splice(action.payload, 1);
-        }
+        removeSkill: (state, action: PayloadAction<string>) => {
+            const id = action.payload;
+            state.skills = state.skills.filter(skill => skill.id !== id);
+        },
     }
 });
 

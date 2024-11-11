@@ -8,7 +8,7 @@ import { debounce } from "lodash";
 import { updateBasicInfo } from "@/redux/features/resumeformSlice";
 import { RootState } from "../../redux/store";
 
-const BasicInfo= forwardRef<FormikProps<BasicInfoType> ,object> ((_,ref) => {
+const BasicInfo= () => {
 
     const {basicInfo} = useSelector((state:RootState)=>state.resumeForm);
     const dispatch = useDispatch();
@@ -42,12 +42,11 @@ const BasicInfo= forwardRef<FormikProps<BasicInfoType> ,object> ((_,ref) => {
                 initialValues={initialValues}
                 validationSchema={basicInfoValidationSchema}
                 onSubmit={()=>{}}
-                innerRef={ref}
                 enableReinitialize={true}
             >
                 {() => (
                     <>
-                        <Form className='h-full w-full bg-red-100 flex flex-col items-center justify-center gap-4' >
+                        <Form className='h-full w-full flex flex-col items-center justify-center gap-4' >
                             <div className=" flex flex-col  gap-6" > 
                                 <div className='text-xl font-semibold flex items-center  gap-2' >
                                     <label htmlFor="name">Name</label>
@@ -88,9 +87,7 @@ const BasicInfo= forwardRef<FormikProps<BasicInfoType> ,object> ((_,ref) => {
         </main>
 
     );
-});
-
-BasicInfo.displayName="BasicInfo";
+};
 
 export default BasicInfo;
 

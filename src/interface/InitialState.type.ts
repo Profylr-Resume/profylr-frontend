@@ -7,7 +7,7 @@ import { SkillsType } from "./Skills.interface";
 export interface InitialStateType {
     basicInfo: BasicInfoType;
     education: EducationType;
-    experience: ExperienceType[];
+    experiences: ExperienceType[];
     projects: ProjectsType[];
     skills: SkillsType[];
 }

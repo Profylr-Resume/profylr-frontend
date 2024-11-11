@@ -8,12 +8,14 @@ import Experience from "./components/formFileds/Experience";
 import BasicInfo from "./components/formFileds/BasicInfo";
 import GeneratedResume from "./components/GeneratedResume";
 import ResumeForm from "./components/ResumeForm";
+import Login from "./pages/auth/Login";
 
 function App() {
 
     return (
         <>
             <Routes>
+                <Route path="/login" element={<Login/>} />
                 <Route path="/resume" element={<GeneratedResume/>} />
                 <Route path="/forms" element={<ResumeForm/>} />
                 <Route path="/education" element={<Education/>} />

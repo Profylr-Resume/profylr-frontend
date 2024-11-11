@@ -1,6 +1,5 @@
-import React, { forwardRef, useCallback, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage, FormikProps } from "formik";
-import { Button } from "@/components/ui/button";
+import  { useCallback, useEffect } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { educationValidationSchema } from "@/validations/educationValidationSchema";
@@ -10,6 +9,7 @@ import { RootState } from "@/redux/store";
 import FormikValueWatcher from "@/utils/formikValuesWatcher";
 import { debounce } from "lodash";
 import { updateEducation } from "@/redux/features/resumeformSlice";
+import { InitialStateType } from "@/interface/InitialState.type";
 
 
 
@@ -99,9 +99,9 @@ const renderEducationLevel = (level:string, title: string) => (
     </div>
 );
 
-const Education = forwardRef<FormikProps<EducationType> ,object> ( (_,ref) => {
+const Education = () => {
 
-    const {education} = useSelector((state:RootState)=>state.resumeForm);
+    const {education} = useSelector((state:RootState):InitialStateType=>state.resumeForm);
     const dispatch = useDispatch();
     
     const debounceUpdateState = useCallback(
@@ -143,7 +143,6 @@ const Education = forwardRef<FormikProps<EducationType> ,object> ( (_,ref) => {
                 initialValues={initialValues}
                 validationSchema={educationValidationSchema}
                 onSubmit={()=>{}}
-                innerRef={ref}
             >
                 {()=>(
                     <>
@@ -155,11 +154,9 @@ const Education = forwardRef<FormikProps<EducationType> ,object> ( (_,ref) => {
                         <FormikValueWatcher<EducationType> onChange={handleOnChange} />
                     </>
                 )}
-             
             </Formik>
         </main>
     );
-});
+};
 
-Education.displayName="Education";
 export default Education;

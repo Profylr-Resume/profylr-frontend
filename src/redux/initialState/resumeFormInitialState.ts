@@ -27,40 +27,9 @@ const initialState: InitialStateType = {
             result: "",
         },
     },
-    experience: [
-        {
-            organisationName: "",
-            position: "",
-            from: "",
-            to: "",
-            description: [],
-        },
-    ],
-    projects: [
-        {
-            name: "",
-            technologiesUsed: [],
-            from: "",
-            to: "",
-            sourceCodeRepository: "",
-            liveLink: "",
-            description: [],
-        },
-    ],
-    skills: [
-        {
-            name: "",
-            proficiencyLevel: "",
-            yearsOfExperience: "",
-            category: "",
-            credentials: {
-                certificateUrl: "",
-                issuingOrganization: "",
-                dateObtained: "",
-                expiryDate: "",
-            },
-        },
-    ],
+    experiences: [],
+    projects: [],
+    skills: [],
 };
 
 export default initialState;

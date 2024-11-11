@@ -1,14 +1,19 @@
 import { skillsValidationsSchema } from "@/validations/skillsValidationsSchema";
-import{ forwardRef, useEffect, useState } from "react";
-import { Formik, Form, Field, ErrorMessage, FormikProps } from "formik";
+import { useEffect, useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { SkillsType } from "@/interface/Skills.interface";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { InitialStateType } from "@/interface/InitialState.type";
-import { addSkill, removeSkill } from "@/redux/features/resumeformSlice";
+import { addSkill, removeSkill, updateSkill } from "@/redux/features/resumeformSlice";
 import { v4 as uuidv4 } from "uuid";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "../ui/button";
-
 
 // initial values will always be empty . coz we will update the state on CTA (add skill)
 const initialValues = {
@@ -25,19 +30,72 @@ const initialValues = {
     id:uuidv4()
 };
 
-const Skills = forwardRef<FormikProps<SkillsType>,object> ((_,ref) => {
+const SkillInAccordion = ({skill}:{skill:SkillsType})=> {
+    return (
+        <section className="flex flex-col " >
+            <div className="flex items-center justify-between" >
+                <div className="flex flex-col ">
+                    <div className="flex items-center text-xs ">
+                        <h4 className="font-semibold underline" >Name:</h4>
+                        <p>{skill.name}</p>
+                    </div>
+                    <div className="flex">
+                        <h4>Proficiency:</h4>
+                        <p>{skill.proficiencyLevel}</p>
+                    </div>
+                </div>
+                <div className="flex flex-col">
+                    <div className="flex" >
+                        <h4>Years of Exp.:</h4>
+                        <p>{skill.yearsOfExperience}</p>
+                    </div>
+                    <div className="flex" >
+                        <h4>End Date:</h4>
+                        <p>{skill.category}</p>
+                    </div>
+                </div>
+            </div>
+            <div className="flex " >
+                <div className="flex" >
+                    <h2>Credentials:</h2>
+                    <div className="flex flex-col" >
+                        <p>{skill.credentials.certificateUrl}</p>
+                        <p>{skill.credentials.dateObtained}</p>
+                        <p>{skill.credentials.issuingOrganization}</p>
+                        <p>{skill.credentials.expiryDate}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const Skills =() => {
 
     // this will be used to display the existing skills , in clear Ui format, not in form
     const {skills} = useSelector((state:RootState):InitialStateType=>state.resumeForm);
     const dispatch = useDispatch();
 
-   
-  
-    const handleSkillAdd = (values:SkillsType):void=>{
+    const [isFormPreFilled, setIsFormPreFilled] = useState(false);
+    const [prefilledValues, setPrefilledValues] = useState<SkillsType>(initialValues);
+
+    const handleAddSkill = (values:SkillsType,setSubmitting:(isSubmitting: boolean) => void,resetForm:()=>void):void=>{
         dispatch(addSkill(values));
+        resetForm();
     };
 
-    const handleSkillDelete = (skillId:string):void=>{
+    const handlePrefillForm = (skill:SkillsType):void=>{
+        setPrefilledValues(skill);
+        setIsFormPreFilled(true);
+    };
+
+    const handleUpdateSkill = (values:SkillsType,setSubmitting:(isSubmitting: boolean) => void,resetForm:()=>void):void=>{
+        dispatch(updateSkill(values));
+        resetForm();
+    };
+
+    const handleRemoveSkill = (id:string):void=>{
+        dispatch(removeSkill(id));
     };
 
     useEffect(():void => {
@@ -46,11 +104,27 @@ const Skills = forwardRef<FormikProps<SkillsType>,object> ((_,ref) => {
       
     return (
         <main className="h-full w-full flex flex-col items-center justify-center" >
+            {skills && skills.length>0 && skills.map((skill)=> 
+                (
+                    <main key={skill.id} className="flex items-center gap-4">
+                        <Accordion  type="single" collapsible={true}>
+                            <AccordionItem  value={skill.id} className="w-[50rem]" >
+                                <AccordionTrigger>{skill.name}</AccordionTrigger>
+                                <AccordionContent>
+                                    <SkillInAccordion skill={skill} />
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                        <Button variant={"default"} size={"sm"} onClick={()=> handlePrefillForm(skill)} >Update</Button>
+                        <Button variant={"destructive"} size={"sm"} onClick={()=> handleRemoveSkill(skill.id)} >Remove</Button>
+                    </main>
+                )) 
+            }
             <Formik
-                initialValues={initialValues}
+                initialValues={isFormPreFilled ? prefilledValues : initialValues}
                 validationSchema={skillsValidationsSchema}
-                onSubmit={handleSkillAdd}
-                innerRef={ref}
+                onSubmit={(values,{setSubmitting,resetForm}):void=> (isFormPreFilled && skills.length>0 ? handleUpdateSkill(values,setSubmitting,resetForm) : handleAddSkill(values,setSubmitting,resetForm))}
+                enableReinitialize={true}
             >
                 {({ isSubmitting }) => (
                     <>
@@ -119,18 +193,16 @@ const Skills = forwardRef<FormikProps<SkillsType>,object> ((_,ref) => {
                                 <ErrorMessage name="credentials.expiryDate" component="div" className="error" />
                             </div>
 
-                            <Button type="submit" >Add Skill</Button>
+                            <div>
+                                <Button type="submit" >{isFormPreFilled && skills.length>0 ? "Update" : "Add Skill"}</Button>
+                            </div>
                         </Form>
-                        {/* <FormikValueWatcher<SkillsType> onChange={handleOnChange} /> */}
                     </>
-
                 )}
             </Formik>
         </main>
 
     );
-});
-
-Skills.displayName="Skills";
+};
 
 export default Skills;
