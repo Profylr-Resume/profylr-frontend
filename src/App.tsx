@@ -11,6 +11,8 @@ import ResumeForm from "./components/ResumeForm";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Persona from "./pages/Persona";
+import TemplateForm from "./pages/admin/CreateTemplate";
+import CreateResumeSection from "./pages/admin/CreateResumeSection";
 
 function App() {
 
@@ -20,6 +22,9 @@ function App() {
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register" element={<Register/>} />
                 <Route path="/persona" element={<Persona/>} />
+                <Route path="/template" element={<TemplateForm />} />
+                <Route path="/template" element={<TemplateForm />} />
+                <Route path="/section" element={<CreateResumeSection />} />
 
 
                 <Route path="/resume" element={<GeneratedResume/>} />
