@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Toaster } from "@/components/ui/toaster";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RootLayout = () => {
     return (
@@ -9,7 +9,19 @@ const RootLayout = () => {
             <main className="flex-grow">
                 <Outlet /> 
             </main>
-            <Toaster />
+            {/* ToastContainer should only be placed once */}
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000} 
+                hideProgressBar={false} 
+                newestOnTop={false} 
+                closeOnClick={true} 
+                rtl={false} 
+                pauseOnFocusLoss={true} 
+                draggable={true} 
+                pauseOnHover={true}
+                theme="dark"
+            />
         </div>
     );
 };

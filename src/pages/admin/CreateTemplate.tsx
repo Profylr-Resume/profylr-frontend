@@ -1,4 +1,5 @@
 import { ResumeSection, TemplateType } from "@/models/template.type";
+import { blackButton } from "@/css/buttons";
 import { templateValidation } from "@/validations/templateValidationSchema";
 import { FormControl, TextField } from "@mui/material";
 import { Field, Form, Formik, FormikHelpers } from "formik";
@@ -254,7 +255,7 @@ const CreateTemplate = () => {
                                     </div>
 
                                     <div className="h-[10%] w-full flex items-end justify-center" >
-                                        <button type="submit" className="px-6 py-1 text-white text-lg font-semibold rounded-lg bg-black bg-opacity-90 backdrop-blur-md border-2 border-transparent hover:bg-opacity-60 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-white">
+                                        <button type="submit" className={`${blackButton}`}>
                                                 Submit
                                         </button>
 

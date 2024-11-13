@@ -1,9 +1,12 @@
+import { createSection } from "@/api/resumeSection";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { glassyLightGreen } from "@/css/backgrounds";
+import { blackButton } from "@/css/buttons";
 import { SectionType } from "@/models/resumeSection.type";
 import { sectionValidationSchema } from "@/validations/sectionValidationSchema";
 import { ErrorMessage, Field, Form, Formik,FormikHelpers } from "formik";
 import React from "react";
+import { toast } from "react-toastify";
 
 
 const initialValues :SectionType = {
@@ -13,15 +16,16 @@ const initialValues :SectionType = {
 
 const CreateResumeSection = () => {
 
-    const {toast} = useToast();
 
-    const handleSectionSubmission= (values:SectionType,{setSubmitting}: FormikHelpers<SectionType> )=>{
+    const handleSectionSubmission= async(values:SectionType,{setSubmitting}: FormikHelpers<SectionType> ):void=>{
         console.log(values);
         setSubmitting(false);
 
-        toast({
-            title:"Values added successfully",
-        });
+        const newSection = await createSection(values);
+        if(newSection){
+            toast.success("NEw Section Created!");
+        }
+        toast.error("Error While Creating section");
     };
 
 
@@ -39,40 +43,37 @@ const CreateResumeSection = () => {
                         >
                             {({isSubmitting})=>(
                                 <>
-                                    <Form className="h-full w-full flex flex-col items-center justify-center relative ">
-                                        <div className="h-full w-full flex flex-col items-center justify-center gap-16" >
+                                    <Form className="h-full w-full flex flex-col items-center justify-end gap-[10rem] pb-16 relative ">
+                                        <div className="w-full px-32 flex flex-col items-center justify-center gap-10" >
 
-                                            <div className="w-[40rem] flex items-center justify-center gap-2">
-                                                <label htmlFor="name" className="text-themeCream font-medium text-6xl whitespace-nowrap ">Name :</label>
+                                            <div className="w-full  flex items-center justify-center gap-2">
+                                                <label htmlFor="name" className="w-1/2 text-center text-themeCream font-medium text-6xl whitespace-nowrap ">Name :</label>
                                                 <Field
                                                     name="name"
                                                     type="text"
-                                                    className="w-full mt-4 text-xl font-medium bg-themeDarkGreen rounded-2xl text-themeCream px-4 py-3"
+                                                    autoComplete="off"
+                                                    className={`w-full mx-24 text-xl font-medium ${glassyLightGreen} border-0 rounded-2xl text-themeBlack px-4 py-3`}
                                                 />
                                             </div>
 
-                                            <div  className="w-[50rem] flex items-center justify-center gap-2 ">
-                                                <label htmlFor="description" className="text-themeCream font-medium text-6xl whitespace-nowrap  ">Description :</label>
+                                            <div  className="w-full flex items-center justify-center gap-2 ">
+                                                <label htmlFor="description" className="w-1/2 text-center text-themeCream font-medium text-6xl whitespace-nowrap  ">Description :</label>
                                                 <Field
                                                     as="textarea"
                                                     name="description"
                                                     rows={4}
-                                                    className="text-lg font-medium bg-themeDarkGreen rounded-2xl text-themeCream w-full"
+                                                    className={`w-full mx-8 text-xl font-medium ${glassyLightGreen} border-0 rounded-2xl text-themeBlack px-4 py-3`}
                                                 />
                                            
                                             </div>
                                         </div>
 
                                         <div>
-                                            <button
+                                            <button 
                                                 type="submit"
-                                                disabled={isSubmitting}
-                                                className={`absolute bottom-10   px-6 py-2 text-xl 
-                    font-bold text-themeCream rounded-xl 
-                    bg-black hover:bg-themeCream hover:text-themeDarkGreen
-                    ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""} transition-all duration-300 ease-in-out`}
+                                                className={`${blackButton}`}
                                             >
-                                                {isSubmitting ? "Submitting..." : "Submit"}
+                                                            Submit
                                             </button>
 
                                         </div>
