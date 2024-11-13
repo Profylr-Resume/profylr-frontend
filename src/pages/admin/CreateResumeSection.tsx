@@ -1,5 +1,5 @@
 import { sectionValidationSchema } from "@/validations/sectionValidationSchema";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik,FormikHelpers } from "formik";
 import React from "react";
 
 interface SectionType{
@@ -14,8 +14,9 @@ const initialValues :SectionType = {
 const CreateResumeSection = () => {
 
 
-    const handleSectionSubmission= (values:SectionType)=>{
+    const handleSectionSubmission= (values:SectionType,{setSubmitting}: FormikHelpers<SectionType> )=>{
         console.log(values);
+        setSubmitting(false);
     };
 
 
@@ -29,9 +30,9 @@ const CreateResumeSection = () => {
                         <Formik
                             initialValues={initialValues}
                             validationSchema={sectionValidationSchema}
-                            onSubmit={(values)=> handleSectionSubmission(values) }
+                            onSubmit={(values,helpers)=> handleSectionSubmission(values,helpers) }
                         >
-                            {()=>(
+                            {({isSubmitting})=>(
                                 <>
                                     <Form className="h-full w-full flex flex-col items-center justify-center relative ">
                                         <div className="h-full w-full flex flex-col items-center justify-center gap-16" >
@@ -58,13 +59,15 @@ const CreateResumeSection = () => {
                                         </div>
 
                                         <div>
-                                            <button 
-                                                type="submit" 
-                                                className="absolute bottom-10 border-4 border-themeDarkGreen px-4 py-2 text-xl 
-             font-bold text-themeCream rounded-xl bg-gradient-to-br from-themeLightGreen to-themeDarkGreen
-             hover:bg-themeCream hover:text-themeDarkGreen hover:border-themeLightGreen transition-all duration-300 ease-in-out"
+                                            <button
+                                                type="submit"
+                                                disabled={isSubmitting}
+                                                className={`absolute bottom-10 border-4 border-themeDarkGreen px-4 py-2 text-xl 
+                    font-bold text-themeCream rounded-xl 
+                    bg-gradient-to-br from-themeLightGreen to-themeDarkGreen hover:bg-themeCream
+                    ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""} transition-all duration-300 ease-in-out`}
                                             >
-  Submit
+                                                {isSubmitting ? "Submitting..." : "Submit"}
                                             </button>
 
                                         </div>
