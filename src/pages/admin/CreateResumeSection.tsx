@@ -1,12 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { SectionType } from "@/models/resumeSection.type";
 import { sectionValidationSchema } from "@/validations/sectionValidationSchema";
 import { ErrorMessage, Field, Form, Formik,FormikHelpers } from "formik";
 import React from "react";
 
-interface SectionType{
-    name:string,description:string
-}
 
 const initialValues :SectionType = {
     name:"",
@@ -32,7 +30,7 @@ const CreateResumeSection = () => {
             <div className=" h-[40rem] w-[80rem] shadow-2xl relative  " >
                 <h1 className="font-bold text-themeCream text-[8rem]  absolute top-[-8rem] " > Resume Sections</h1>
                 
-                <div  className="h-full w-full flex items-center justify-center bg-themeLightGreen  shadow-custom-yellow-green p-4 absolute top-2 z-10 rounded-xl " >
+                <div  className="h-full w-full flex items-center justify-center bg-gradient-to-br from-themeLightGreen to-[#A6C86F] bg-opacity-30 backdrop-blur-lg shadow-2xl absolute top-2 z-10 rounded-xl " >
                     <div className="h-full w-full" >
                         <Formik
                             initialValues={initialValues}
