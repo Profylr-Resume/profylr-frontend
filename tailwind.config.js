@@ -80,7 +80,10 @@ export default {
     		animation: {
     			'accordion-down': 'accordion-down 0.2s ease-out',
     			'accordion-up': 'accordion-up 0.2s ease-out'
-    		}
+    		},
+			boxShadow: {
+				'custom-yellow-green': '4px 4px 12px rgba(255, 255, 255,0.8)', // Light yellow-green shadow with opacity
+			},
     	}
     },
     plugins: [
