@@ -1,3 +1,4 @@
+import { useToast } from "@/hooks/use-toast";
 import { sectionValidationSchema } from "@/validations/sectionValidationSchema";
 import { ErrorMessage, Field, Form, Formik,FormikHelpers } from "formik";
 import React from "react";
@@ -13,17 +14,22 @@ const initialValues :SectionType = {
 
 const CreateResumeSection = () => {
 
+    const {toast} = useToast();
 
     const handleSectionSubmission= (values:SectionType,{setSubmitting}: FormikHelpers<SectionType> )=>{
         console.log(values);
         setSubmitting(false);
+
+        toast({
+            title:"Values added successfully",
+        });
     };
 
 
     return (
         <main className="h-screen w-screen bg-themeDarkGreen flex items-center justify-center " >
             <div className=" h-[40rem] w-[80rem] bg-themeLightGreen rounded-xl shadow-2xl relative" >
-                <h1 className="font-bold text-themeCream text-[8rem] absolute top-[-8rem] " > Resume Sections</h1>
+                <h1 className="font-bold text-themeCream text-[8rem]  absolute top-[-8rem] " > Resume Sections</h1>
                 
                 <div className="h-full w-full flex items-center justify-center" >
                     <div className="h-full w-full" >
