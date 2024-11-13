@@ -44,7 +44,7 @@ const CreateTemplate = () => {
     const [tabs, setTabs] = useState<SectionTab[]>([]); // Keeps track of added tabs
     const [activeTab, setActiveTab] = useState<string | null>(null); // Tracks the active tab
 
-    const handleSectionChange = (e):void => {
+    const handleSectionChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>):void => {
         const newSection = e?.target?.value;
         if (newSection && !tabs.some(tab => tab._id === newSection)) {
             const selectedTab = dummyArray.find(item => item._id === newSection);
@@ -71,12 +71,16 @@ const CreateTemplate = () => {
         setActiveTab(id); // Set clicked tab as active
     };
 
-    const handleTabHtmlChange = (e: React.ChangeEvent<HTMLInputElement>, tabId: string) => {
+    const handleTabHtmlChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, // Accept both <input> and <textarea>
+        tabId: string
+    ) => {
         const updatedTabs = tabs.map(tab =>
             tab._id === tabId ? { ...tab, html: e.target.value } : tab
         );
         setTabs(updatedTabs); // Update the `tabs` state with the new HTML value for the active tab
     };
+      
 
     const handleTemplateSubmission = (
         values: TemplateType,
@@ -172,7 +176,7 @@ const CreateTemplate = () => {
                                                 <select
                                                     id="dropdown"
                                                     value={selectedSection || ""}
-                                                    onChange={handleSectionChange}
+                                                    onChange={(e)=> handleSectionChange(e)}
                                                     className="w-[13rem] px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-themeLightGreen"
                                                 >
                                                     <option value="" disabled={true}>Select a section</option>
