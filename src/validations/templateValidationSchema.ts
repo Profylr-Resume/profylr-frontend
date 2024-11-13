@@ -7,9 +7,9 @@ export const templateValidation = Yup.object().shape({
     sections: Yup.array().of(
         Yup.object({
             section: Yup.object({
-                _id: Yup.string().required("Section is required"),
+                _id: Yup.string(),
             }),
-            html: Yup.string().required("HTML is required"),
+            html: Yup.string(),
         })
-    ).required("Sections are required"),
+    ),
 });

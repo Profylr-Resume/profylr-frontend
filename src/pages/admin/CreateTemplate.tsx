@@ -1,8 +1,9 @@
 import { ResumeSection, TemplateType } from "@/models/template.type";
+import { templateValidation } from "@/validations/templateValidationSchema";
 import { FormControl, TextField } from "@mui/material";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { templateSettings } from "lodash";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 
@@ -38,9 +39,6 @@ interface SectionTab {
 }
 
 const CreateTemplate = () => {
-
-
-    
 
     const [selectedSection, setSelectedSection] = useState<string | null>(null);
     const [tabs, setTabs] = useState<SectionTab[]>([]); // Keeps track of added tabs
@@ -80,10 +78,31 @@ const CreateTemplate = () => {
         setTabs(updatedTabs); // Update the `tabs` state with the new HTML value for the active tab
     };
 
-    const handleTemplateSubmission = (values:TemplateType,{resetForm}:FormikHelpers<TemplateType>)=>{
+    const handleTemplateSubmission = (
+        values: TemplateType,
+        { resetForm }: FormikHelpers<TemplateType>
+    ) => {
         console.log(values);
+      
+        // Construct the sections array directly without mutation
+        const template = {
+            ...values, 
+            sections: tabs.map((s) => ({
+                section: {
+                    _id: s._id,
+                },
+                html: s.html,
+            })),
+        };
+      
+        // Log the template to verify it before submitting or resetting
+        console.log(template);
+      
+        // Reset the form after submission
+        // resetForm();
     };
     
+
     return (
         <main className="h-screen w-screen bg-themeDarkGreen flex items-center justify-center relative pt-10 " >
             <div className=" h-[40rem] w-[80rem] shadow-2xl relative  " >
@@ -94,7 +113,7 @@ const CreateTemplate = () => {
 
                         <Formik 
                             initialValues={initialState}
-                            validationSchema={templateSettings}
+                            validationSchema={templateValidation}
                             onSubmit={(values,helpers):void=>handleTemplateSubmission(values,helpers)}
                         >
                             {()=>(
@@ -148,7 +167,7 @@ const CreateTemplate = () => {
                                         <div className="w-[40%] h-full p-10">
                                             <div className="w-full h-full flex flex-col items-start justify-start gap-6 px-20 pt-5">
                                                 <label htmlFor="dropdown" className="block text-4xl font-medium text-themeCream mb-2">
-                        Select Sections
+                                                    Select Sections
                                                 </label>
                                                 <select
                                                     id="dropdown"
