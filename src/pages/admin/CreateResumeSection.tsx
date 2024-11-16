@@ -17,7 +17,7 @@ const initialValues :SectionType = {
 const CreateResumeSection = () => {
 
 
-    const handleSectionSubmission= async(values:SectionType,{setSubmitting}: FormikHelpers<SectionType> ):void=>{
+    const handleSectionSubmission= async(values:SectionType,{setSubmitting}: FormikHelpers<SectionType> ):Promise<void>=>{
         console.log(values);
         setSubmitting(false);
 
@@ -30,11 +30,16 @@ const CreateResumeSection = () => {
 
 
     return (
-        <main className="h-screen w-screen bg-themeDarkGreen flex items-center justify-center relative pt-10 " >
-            <div className=" h-[40rem] w-[80rem] shadow-2xl relative  " >
-                <h1 className="font-bold text-themeCream text-[8rem]  absolute top-[-8rem] " > Resume Sections</h1>
+        <main className="h-screen w-screen bg-gradient-to-br from-purple-400 to-purple-700 flex items-center justify-center relative  " >
+            <div className=" h-full w-full  relative  " >
+                <h1 className="font-bold text-white text-[11rem]  absolute top-[-1rem] left-[10%] " > Resume Sections</h1>
                 
-                <div  className="h-full w-full flex items-center justify-center bg-gradient-to-br from-themeLightGreen to-[#A6C86F] bg-opacity-30 backdrop-blur-lg shadow-2xl absolute top-2 z-10 rounded-xl " >
+                <div
+                    className="h-[36rem] w-[90rem] flex items-center justify-center bg-gradient-to-br from-purple-400 to-purple-700  bg-opacity-30 backdrop-blur-lg shadow-2xl 
+                                absolute top-[11rem] left-[10%] z-10 rounded-xl"
+                    style={{ boxShadow: "6px 6px 8px #1f2937" }}
+                >
+
                     <div className="h-full w-full" >
                         <Formik
                             initialValues={initialValues}
@@ -43,7 +48,7 @@ const CreateResumeSection = () => {
                         >
                             {({isSubmitting})=>(
                                 <>
-                                    <Form className="h-full w-full flex flex-col items-center justify-end gap-[10rem] pb-16 relative ">
+                                    <Form className="h-full w-full flex flex-col items-center justify-evenly   relative ">
                                         <div className="w-full px-32 flex flex-col items-center justify-center gap-10" >
 
                                             <div className="w-full  flex items-center justify-center gap-2">

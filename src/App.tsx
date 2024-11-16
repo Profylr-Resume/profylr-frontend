@@ -14,6 +14,11 @@ import Persona from "./pages/Persona";
 import TemplateForm from "./pages/admin/CreateTemplate";
 import CreateResumeSection from "./pages/admin/CreateResumeSection";
 import RootLayout from "./layout/RootLayout";
+import TemplateSelection from "./pages/TemplateSelection";
+import GenerateResume from "./pages/GenerateResume";
+import ParallaxScroll from "./pages/Parallax";
+import Dummy from "./pages/Dummy";
+import HoverEffect from "./pages/Hello";
 
 function App() {
 
@@ -24,9 +29,12 @@ function App() {
                     <Route path="/login" element={<Login/>} />
                     <Route path="/register" element={<Register/>} />
                     <Route path="/persona" element={<Persona/>} />
-                    <Route path="/template" element={<TemplateForm />} />
+                    <Route path="/selectTemplate" element={<TemplateSelection />} />
                     <Route path="/template" element={<TemplateForm />} />
                     <Route path="/section" element={<CreateResumeSection />} />
+                    <Route path="/generate" element={<GenerateResume />} />
+                    <Route path="/hello" element={<ParallaxScroll />} />
+                    <Route path="/bye" element={<HoverEffect />} />
 
                     <Route path="/resume" element={<GeneratedResume/>} />
                     <Route path="/forms" element={<ResumeForm/>} />

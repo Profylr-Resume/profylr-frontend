@@ -109,11 +109,16 @@ const CreateTemplate = () => {
     
 
     return (
-        <main className="h-screen w-screen bg-themeDarkGreen flex items-center justify-center relative pt-10 " >
-            <div className=" h-[40rem] w-[80rem] shadow-2xl relative  " >
-                <h1 className="font-bold text-themeCream text-[8rem]  absolute top-[-8rem] " > Create Template</h1>
+        <main className="h-screen w-screen bg-gradient-to-br from-purple-400 to-purple-700 flex items-center justify-center relative  " >
+            <div className=" h-full w-full  relative  " >
+                <h1 className="font-bold text-white text-[11rem]  absolute top-[-1rem] left-[10%] " > Create Template</h1>
             
-                <div  className="h-full w-full flex items-center justify-center bg-gradient-to-br from-themeLightGreen to-[#A6C86F] bg-opacity-30 backdrop-blur-lg p-6   shadow-2xl  absolute top-4 z-10 rounded-xl " >
+                <div
+                    className="h-[36rem] w-[90rem] flex items-center justify-center bg-gradient-to-br from-purple-400 to-purple-700  bg-opacity-30 backdrop-blur-lg shadow-2xl 
+                            absolute top-[11rem] left-[10%] z-10 rounded-xl"
+                    style={{ boxShadow: "6px 6px 8px #1f2937" }}
+                >
+
                     <div className="h-full w-full">
 
                         <Formik 
@@ -266,6 +271,7 @@ const CreateTemplate = () => {
                         </Formik>
 
                     </div>
+
                 </div>
             </div>
         </main>

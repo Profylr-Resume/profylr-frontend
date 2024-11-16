@@ -1,13 +1,26 @@
 import { SectionType } from "@/models/resumeSection.type";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const BASE_URL=import.meta.env.VITE_BACKEND_BASE_URL;
 
-export const createSection = async(section:SectionType):Promise<boolean>=>{
+interface SectionCreationResponse {
+    data:{
+        name:string,
+        description:string,
+    } | null,
+    message:string,
+    error: string | null,
+}
+
+export const createSection = async(section:SectionType):Promise<SectionCreationResponse>=>{
 
     console.log(import.meta.env.VITE_BACKEND_BASE_URL);
     if(!section || !section.name){
-        return false;
+        return {
+            data:null,
+            message:"Missing fields",
+            error:"Section does not contain the required fields"
+        };
     }
 
     const payload = {
@@ -15,10 +28,7 @@ export const createSection = async(section:SectionType):Promise<boolean>=>{
         description : section?.description
     };
 
-    const sectionCreated = await axios.post(`${BASE_URL}/user/section`,payload);
+    const response :AxiosResponse<SectionCreationResponse> = await axios.post("http://localhost:5000/api/user/section",payload);
 
-    if(sectionCreated && sectionCreated?.error){
-        return false;
-    }
-    return true;
+    return response.data;
 };

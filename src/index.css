@@ -64,4 +64,11 @@
     @apply bg-background text-foreground;
   }
 }
+body {
+  scroll-snap-type: y mandatory;
+}
+
+.progress {
+  transition: transform 0.4s ease;
+}
 
