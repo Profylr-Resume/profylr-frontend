@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import Persona from "./Persona";
-import TemplateSelection from "./TemplateSelection";
-import GenerateResume from "./GenerateResume";
+import Persona from "../Persona";
+import TemplateSelection from "../TemplateSelection";
+import GenerateResume from "../GenerateResume";
 
 // Import custom section components
 const SectionOne = () => <Persona />;

@@ -4,7 +4,6 @@ const GeneratedResume = () => {
     return (
         <>
             <main className='h-full w-full' >
-    
                 <body className="h-full w-full bg-gray-100 font-sans overflow-y-auto ">
                     <div className="container mx-auto px-4 py-8 max-w-4xl">
                         <header className="text-center mb-8">

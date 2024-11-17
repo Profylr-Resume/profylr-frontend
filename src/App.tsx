@@ -1,24 +1,11 @@
-import {Routes,Route,Navigate} from "react-router-dom";
-import BuildingInterface from "./pages/BuildingInterface";
+import {Routes,Route} from "react-router-dom";
 
-import Education from "./components/formFileds/Education";
-import Skills from "./components/formFileds/Skills";
-import Projects from "./components/formFileds/Projects";
-import Experience from "./components/formFileds/Experience";
-import BasicInfo from "./components/formFileds/BasicInfo";
-import GeneratedResume from "./components/GeneratedResume";
-import ResumeForm from "./components/ResumeForm";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-import Persona from "./pages/Persona";
-import TemplateForm from "./pages/admin/CreateTemplate";
-import CreateResumeSection from "./pages/admin/CreateResumeSection";
 import RootLayout from "./layout/RootLayout";
-import TemplateSelection from "./pages/TemplateSelection";
-import GenerateResume from "./pages/GenerateResume";
-import ParallaxScroll from "./pages/Parallax";
-import Dummy from "./pages/Dummy";
-import HoverEffect from "./pages/Hello";
+import Homepage from "./pages/Homepage";
+import ResumeSection from "./pages/admin/ResumeSections.page";
+import TemplateAdmin from "./pages/admin/TemplateAdmin.page";
 
 function App() {
 
@@ -28,12 +15,15 @@ function App() {
                 <Route path="/" element={<RootLayout/>} >
                     <Route path="/login" element={<Login/>} />
                     <Route path="/register" element={<Register/>} />
+
+                    <Route path="/template" element={<TemplateAdmin />} />
+                    <Route path="/section" element={<ResumeSection />} />
+                    <Route path="/home" element={<Homepage />} />
+                    {/* 
                     <Route path="/persona" element={<Persona/>} />
                     <Route path="/selectTemplate" element={<TemplateSelection />} />
-                    <Route path="/template" element={<TemplateForm />} />
-                    <Route path="/section" element={<CreateResumeSection />} />
+             
                     <Route path="/generate" element={<GenerateResume />} />
-                    <Route path="/hello" element={<ParallaxScroll />} />
                     <Route path="/bye" element={<HoverEffect />} />
 
                     <Route path="/resume" element={<GeneratedResume/>} />
@@ -42,7 +32,7 @@ function App() {
                     <Route path="/skills" element={<Skills/>} />
                     <Route path="/projects" element={<Projects/>} />
                     <Route path="/experience" element={<Experience/>} />
-                    <Route path="/basicInfo" element={< BasicInfo  />} />
+                    <Route path="/basicInfo" element={< BasicInfo  />} /> */}
                 </Route>
 
             </Routes>

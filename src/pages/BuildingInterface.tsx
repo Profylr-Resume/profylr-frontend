@@ -1,6 +1,6 @@
 import React from "react";
 import ResumeForm from "../components/ResumeForm";
-import GeneratedResume from "../components/GeneratedResume";
+import GeneratedResume from "../components/Template1";
 
 const BuildingInterface = () => {
     return (

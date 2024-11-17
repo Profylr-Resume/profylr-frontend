@@ -15,7 +15,7 @@ const sections = [
     { id: 3, label: "Generate", color: "bg-red-500", component: SectionThree },
 ];
 
-const ParallaxScroll = () => {
+const Homepage = () => {
     const [activeSection, setActiveSection] = useState(0);
     const sectionRefs = useRef([]);
 
@@ -115,4 +115,4 @@ const ParallaxScroll = () => {
     );
 };
 
-export default ParallaxScroll;
+export default Homepage;

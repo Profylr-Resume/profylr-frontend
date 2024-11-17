@@ -1,4 +1,4 @@
-import GeneratedResume from "@/components/GeneratedResume";
+import GeneratedResume from "@/components/Template1";
 import ResumeForm from "@/components/ResumeForm";
 import React, { useState } from "react";
 
