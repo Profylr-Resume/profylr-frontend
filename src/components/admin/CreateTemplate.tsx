@@ -6,6 +6,7 @@ import { templateValidation } from "@/validations/templateValidationSchema";
 import { FormControl, TextField } from "@mui/material";
 import { blackButton } from "@/css/buttons";
 import { useAllSectionsQuery } from "@/redux/features/resumeSectionSlice";
+import { useCreateTemplateMutation } from "@/redux/features/templateApi";
 
 const initialState : TemplateType ={
     name:"",
@@ -47,6 +48,7 @@ const CreateTemplate = () => {
     const [possibleSections,setPossibleSections] = useState<SectionTab[]>([]);
 
     const{data:allSections} = useAllSectionsQuery({});
+    const[createTemplate] = useCreateTemplateMutation();
 
     useEffect(()=>{
         if(allSections){
@@ -93,8 +95,7 @@ const CreateTemplate = () => {
     };
       
 
-    const handleTemplateSubmission = ( values: TemplateType, { resetForm }: FormikHelpers<TemplateType> ) => {
-        console.log(values);
+    const handleTemplateSubmission = async( values: TemplateType, { resetForm }: FormikHelpers<TemplateType> ):Promise<void> => {
       
         // Construct the sections array directly without mutation
         const template = {
@@ -104,12 +105,20 @@ const CreateTemplate = () => {
                 html: s.html,
             })),
         };
-      
-        // Log the template to verify it before submitting or resetting
+        
         console.log(template);
-      
-        // Reset the form after submission
-        // resetForm();
+
+        const {data:{data,error,message}} = await createTemplate(template);
+
+        console.log(data);
+
+        if(error){
+            toast.error(error || message);
+            return;
+        }
+        toast.success(message);
+        resetForm();
+        return;
     };
     
     return (
@@ -118,7 +127,7 @@ const CreateTemplate = () => {
             <Formik 
                 initialValues={initialState}
                 validationSchema={templateValidation}
-                onSubmit={(values,helpers):void=>handleTemplateSubmission(values,helpers)}
+                onSubmit={(values,helpers):Promise<void>=>handleTemplateSubmission(values,helpers)}
             >
                 {()=>(
                     <Form className="h-full w-full " >

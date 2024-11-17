@@ -2,7 +2,9 @@ import React from "react";
 
 const ViewAllTemplates = () => {
     return (
-        <div>ViewAllTemplates</div>
+        <main className="h-full w-full bg-white">
+            
+        </main>
     );
 };
 

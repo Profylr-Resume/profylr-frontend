@@ -14,7 +14,7 @@ export const templateApi = createApi({
     // Endpoint to create a template
         createTemplate: builder.mutation({
             query: (data:TemplateType) => ({
-                url: "/",
+                url: "",
                 method: "POST",
                 body: data,
             }),
