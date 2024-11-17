@@ -1,12 +1,17 @@
-import { Formik, Field, Form, ErrorMessage, FieldProps } from "formik";
+import { Formik, Field, Form, ErrorMessage, FieldProps, FormikHelpers } from "formik";
 import { personaValidationSchema } from "@/validations/personaValidationSchema";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { possibleTargetRoles } from "@/assets/static/availableTargetRoles";
 import { possibleStrengthOptions } from "@/assets/static/availableStrengthOptions";
 import { Select, MenuItem, Chip, InputLabel, FormControl, Checkbox, ListItemText } from "@mui/material";
 import { possibleIndustryOptions } from "@/assets/static/availabelIndustryOptions";
 import { possibleGoalOptions } from "@/assets/static/availableGoalOptions";
 import { blackButton } from "@/css/buttons";
+import { PersonaType } from "@/models/persona.interface";
+import { createPersonaThunk, PersonaState } from "@/redux/features/personaSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { AppDispatch, RootState } from "../redux/store";
 
 // Type for the field values (strengths selected by the user)
 interface FormValues {
@@ -35,8 +40,46 @@ const goalOptions = possibleGoalOptions;
 
 const Persona = () => {
    
+    const dispatch:AppDispatch = useDispatch();
 
-   
+    const {loading,persona,error , message} = useSelector((state:RootState):PersonaState=>state.persona);
+
+    const prevLoading = useRef(loading);
+    const prevError = useRef(error);
+    const prevPersona = useRef(persona);
+
+    // Show success or error messages when state changes
+    useEffect(() => {
+        if (loading && prevLoading.current !== loading) {
+            toast.info("Submitting persona...");
+        }
+        prevLoading.current = loading;
+    }, [loading]);
+
+    useEffect(() => {
+        if (persona && prevPersona.current !== persona) {
+            toast.success(`${message}`);
+        }
+        prevPersona.current = persona;
+    }, [persona,message]);
+
+    useEffect(() => {
+        if (error && prevError.current !== error) {
+            toast.error(`Error: ${message}`);
+        }
+        prevError.current = error;
+    }, [error,message]);
+
+
+
+    const handlePersonaSubmission = async(values:PersonaType,{resetForm}:FormikHelpers<PersonaType>)=>{
+        dispatch(createPersonaThunk(values));
+    };
+
+    useEffect(()=>{
+        console.log(persona);
+    },[persona]);
+
     return (
         <main className="h-screen w-screen bg-gradient-to-br from-themeLightPurple to-themeDarkPurple flex items-center justify-center relative  " >
             <div className=" h-full w-full  relative  " >
@@ -55,9 +98,7 @@ const Persona = () => {
                         <Formik
                             initialValues={initialValues}
                             validationSchema={personaValidationSchema}
-                            onSubmit={(values) => {
-                                console.log(values);
-                            }}
+                            onSubmit={(values,helpers):Promise<void> => handlePersonaSubmission(values,helpers) }
                         >
                             {({ setFieldValue }) => (
 
