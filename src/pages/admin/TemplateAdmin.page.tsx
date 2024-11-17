@@ -29,11 +29,13 @@ const TemplateAdmin = () => {
                         boxShadow: "3px 3px 18px #1f2937, -3px 3px 20px #1f2937",
                     }}
                 >
-                    <div className="w-full text-end mt-2 mr-4" >
-                        <Button onClick={handleTabsToggle} >{activetab === "create" ? "View All" : "Create"} </Button>
+                    <div className="h-[6%]  w-full text-end mt-2 mr-4" >
+                        <Button  type="button" onClick={handleTabsToggle} >{activetab === "create" ? "View All" : "Create"} </Button>
                     </div>
-                   
-                    {activetab ==="create" ?  <CreateTemplate/> : <ViewAllTemplates/> }
+                    <div className="h-[94%] w-full " >
+                        {activetab ==="create" ?  <CreateTemplate/> : <ViewAllTemplates/> }
+
+                    </div>
                 </div>
             </div>
         </main>

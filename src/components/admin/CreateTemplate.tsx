@@ -13,9 +13,7 @@ const initialState : TemplateType ={
     description:"",
     html:"",
     sections:[{
-        section:{
-            _id:""
-        },
+        section:"",
         html:""
     }]
 };
@@ -156,7 +154,7 @@ const CreateTemplate = () => {
                                 </div>
                             </div>
 
-                            <div className="w-[60%] p-10 " >
+                            <div className="w-[60%] pr-10" >
                                 {/* HTML */}
                                 <div className=" flex flex-col">
                                     <label htmlFor="html" className="block text-lg font-semibold text-themeWhite">HTML</label>

@@ -1,5 +1,6 @@
 
 export interface TemplateType{
+    _id?:string,
     name:string,
     description:string,
     html:string,
