@@ -8,7 +8,7 @@ import { possibleIndustryOptions } from "@/assets/static/availabelIndustryOption
 import { possibleGoalOptions } from "@/assets/static/availableGoalOptions";
 import { blackButton } from "@/css/buttons";
 import { PersonaType } from "@/models/persona.interface";
-import { createPersonaThunk, PersonaState } from "@/redux/features/personaSlice";
+import { createPersonaThunk, personalizedTemplateStrutureThunk, PersonaState } from "@/redux/features/personaSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AppDispatch, RootState } from "../redux/store";
@@ -73,7 +73,7 @@ const Persona = () => {
 
 
     const handlePersonaSubmission = async(values:PersonaType,{resetForm}:FormikHelpers<PersonaType>)=>{
-        dispatch(createPersonaThunk(values));
+        dispatch(personalizedTemplateStrutureThunk(values));
     };
 
     useEffect(()=>{
@@ -81,12 +81,12 @@ const Persona = () => {
     },[persona]);
 
     return (
-        <main className="h-screen w-screen bg-gradient-to-br from-themeLightPurple to-themeDarkPurple flex items-center justify-center relative  " >
+        <main className="h-screen w-screen bg-gradient-to-br from-gray-400 to-gray-800 flex items-center justify-center relative  " >
             <div className=" h-full w-full  relative  " >
-                <h1 className="font-bold text-themeWhite text-[11rem]  absolute top-[-4rem] left-[10%] " >Persona</h1>
+                <h1 className="font-bold text-yellow-300 text-[11rem]  absolute top-[-4rem] left-[10%] " >Persona</h1>
             
                 <div
-                    className="h-[40rem] w-[90rem] flex items-center justify-center bg-gradient-to-br from-themeLightPurple to-themeDarkPurple  bg-opacity-30 backdrop-blur-lg 
+                    className="h-[40rem] w-[90rem] flex items-center justify-center bg-gradient-to-br from-white to-gray-700  bg-opacity-30 backdrop-blur-lg 
                             absolute top-[8rem] left-[10%] z-10 rounded-xl  "
                     style={{
                         boxShadow: "3px 3px 18px #1f2937, -3px 3px 20px #1f2937",

@@ -29,3 +29,18 @@ export const deletePersonaApi = async (personaId: string): Promise<any> => {
         throw new Error(error.response?.data?.error || "Failed to delete persona");
     }
 };
+
+export const getPersonalizedTemplateStructureApi = async (data): Promise<any> => {
+    try {
+        const response = await axios.post(`${BASE_URL}/user/misc`, data, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        console.log(response);
+        return response.data;
+    } catch (error: any) {
+        console.error("Error creating persona:", error.response?.data?.error || error.message);
+        throw new Error(error.response?.data?.error || "Failed to create persona");
+    }
+};

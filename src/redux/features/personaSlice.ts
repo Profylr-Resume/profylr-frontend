@@ -1,4 +1,4 @@
-import { createPersonaApi, deletePersonaApi } from "@/api/persona.api";
+import { createPersonaApi, deletePersonaApi, getPersonalizedTemplateStructureApi } from "@/api/persona.api";
 import { PersonaType } from "@/models/persona.interface";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
@@ -36,6 +36,21 @@ export const createPersonaThunk = createAsyncThunk (
     async (payload: PersonaType, { rejectWithValue }) => {
         try {
             const {data,error,message} = await createPersonaApi(payload);
+            if (error) {
+                return rejectWithValue(error);
+            }
+            return {data,message};
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    }
+);
+
+export const personalizedTemplateStrutureThunk = createAsyncThunk (
+    "persona/personalizedTemplateStructure",
+    async (payload: PersonaType, { rejectWithValue }) => {
+        try {
+            const {data,error,message} = await getPersonalizedTemplateStructureApi(payload);
             if (error) {
                 return rejectWithValue(error);
             }
@@ -99,6 +114,22 @@ const personaSlice = createSlice({
             .addCase(deletePersonaThunk.rejected, (state, action: PayloadAction<any>) => {
                 state.loading = false;
                 state.error = action.payload;
+            })
+
+            .addCase(personalizedTemplateStrutureThunk.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(personalizedTemplateStrutureThunk.fulfilled, (state, action: PayloadAction<any>) => {
+                const { data, message } = action.payload;
+                state.loading = false;
+                state.persona = data;
+                state.message = message;
+            })
+            .addCase(personalizedTemplateStrutureThunk.rejected, (state, action: PayloadAction<any>) => {
+                state.loading = false;
+                state.error = true;
+                state.message = action.payload;
             });
     },
 });
