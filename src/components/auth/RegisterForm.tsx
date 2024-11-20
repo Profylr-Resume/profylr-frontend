@@ -1,24 +1,26 @@
-import { useFormik } from "formik";
+import {useFormik } from "formik";
 import { TextField, Button } from "@mui/material";
 import registerValidationSchema from "@/validations/registerValidationSchema";
 import { useNavigate } from "react-router-dom";
 
+import useRegisterUser from "@/hooks/useRegisterUser";
+import { User } from "@/models/user.interface";
 
 
 const RegisterForm = () => {
 
     const navigate = useNavigate();
 
-    const formik = useFormik({
+    const registerUserHandler = useRegisterUser();
+
+    const formik = useFormik<User>({
         initialValues: {
             name: "",
             email: "",
             password: "",
         },
         validationSchema: registerValidationSchema,
-        onSubmit: (values) => {
-            console.log("Registration data", values);
-        },
+        onSubmit: registerUserHandler,
     });
 
     const handleLogin = ()=>{
@@ -26,11 +28,10 @@ const RegisterForm = () => {
     };
 
     return (
-        <div className="flex items-center justify-center ">
+        <div className="flex flex-col gap-4 items-center justify-center  ">
             <form
                 onSubmit={formik.handleSubmit}
-                className="w-full  p-8 bg-gradient-to-tr from-themeLightGreen to-themeCream rounded-lg shadow-lg flex flex-col items-center gap-6"
-
+                className="w-full flex flex-col items-center gap-4 px-16 "
             >
 
                 {/* Name Field */}
@@ -43,8 +44,24 @@ const RegisterForm = () => {
                     {...formik.getFieldProps("name")}
                     error={formik.touched.name && Boolean(formik.errors.name)}
                     helperText={formik.touched.name && formik.errors.name}
-                    InputProps={{
-                        className: "bg-white text-gray-700 placeholder-gray-500",
+                    sx={{
+                        "& .MuiOutlinedInput-root": {
+                            backgroundColor: "#ECDFCC", // Apply background color
+                            borderRadius: "12px",      // Apply rounded corners
+                        },
+                        "& .MuiInputBase-input": {
+                            color: "black",  
+                            fontWeight:"600"           // Text color
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "gray",       // Border color
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "black",      // Border color on hover
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "blue",       // Border color when focused
+                        },
                     }}
                 />
 
@@ -58,8 +75,24 @@ const RegisterForm = () => {
                     {...formik.getFieldProps("email")}
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.touched.email && formik.errors.email}
-                    InputProps={{
-                        className: "bg-white text-gray-700 placeholder-gray-500",
+                    sx={{
+                        "& .MuiOutlinedInput-root": {
+                            backgroundColor: "#ECDFCC", // Apply background color
+                            borderRadius: "12px",      // Apply rounded corners
+                        },
+                        "& .MuiInputBase-input": {
+                            color: "black",  
+                            fontWeight:"600"           // Text color
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "gray",       // Border color
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "black",      // Border color on hover
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "blue",       // Border color when focused
+                        },
                     }}
                 />
 
@@ -73,29 +106,46 @@ const RegisterForm = () => {
                     {...formik.getFieldProps("password")}
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.touched.password && formik.errors.password}
-                    InputProps={{
-                        className: "bg-white text-gray-700 placeholder-gray-500",
+                    sx={{
+                        "& .MuiOutlinedInput-root": {
+                            backgroundColor: "#ECDFCC", // Apply background color
+                            borderRadius: "12px",      // Apply rounded corners
+                        },
+                        "& .MuiInputBase-input": {
+                            color: "black",  
+                            fontWeight:"600"           // Text color
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "gray",       // Border color
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "black",      // Border color on hover
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "blue",       // Border color when focused
+                        },
                     }}
                 />
 
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="py-2 px-10 text-xl font-semibold text-white rounded-xl bg-gradient-to-r from-themeDarkGreen to-themeLightGreen hover:bg-themeDarkGreen"
+                    className="py-2 px-10 text-xl  text-white bg-opacity-80 bg-themeBlack rounded-xl font-bold"
                 >
                     Register
                 </button>
 
-                {/* Login Link */}
-                <div className="text-center text-sm text-gray-600 mt-4">
-                    <p>
-                        Already have an account?{" "}
-                        <button  className="text-indigo-600 hover:underline font-semibold" onClick={handleLogin} >
-                            Log in
-                        </button>
-                    </p>
-                </div>
+               
             </form>
+            {/* Login Link */}
+            <div className="text-center text-sm text-themeBlack">
+                <p>
+                        Already have an account?{" "}
+                    <button  className="text-themeCream underline tracking-wider hover:underline font-semibold" onClick={handleLogin} >
+                            Log in
+                    </button>
+                </p>
+            </div>
         </div>
     );
 };

@@ -54,13 +54,10 @@ export default {
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
     			},
-    			// themeDarkGreen: '#31511E',
-    			// themeLightGreen: '#859F3D',
-    			// themeBlack: '#1A1A19',
-    			// themeCream: '#F6FCDF'
-				themeDarkPurple:"#9f56d9",
-				themeLightPurple:"#c75ad9",
-				themeWhite:"#fcfffa"
+    			themeBlack:"#171717",
+				themeGray : "#3C3D37",
+				themeGreen: "#697565",
+				themeCream : "#ECDFCC"
     		},
     		keyframes: {
     			'accordion-down': {

@@ -72,7 +72,7 @@ const Persona = () => {
 
 
 
-    const handlePersonaSubmission = async(values:PersonaType,{resetForm}:FormikHelpers<PersonaType>)=>{
+    const handlePersonaSubmission = async(values:PersonaType,{resetForm}:FormikHelpers<PersonaType>):Promise<void>=>{
         dispatch(personalizedTemplateStrutureThunk(values));
     };
 
@@ -81,13 +81,13 @@ const Persona = () => {
     },[persona]);
 
     return (
-        <main className="h-screen w-screen bg-gradient-to-br from-gray-400 to-gray-800 flex items-center justify-center relative  " >
+        <main className="h-screen w-screen bg-gradient-to-br from-themeGreen to-themeGray  flex items-center justify-center relative  " >
             <div className=" h-full w-full  relative  " >
-                <h1 className="font-bold text-yellow-300 text-[11rem]  absolute top-[-4rem] left-[10%] " >Persona</h1>
+                <h1 className="font-bold text-themeCream text-[13rem]  absolute top-[-3rem] left-[20%]  tracking-wider" >PERSONA</h1>
             
                 <div
-                    className="h-[40rem] w-[90rem] flex items-center justify-center bg-gradient-to-br from-white to-gray-700  bg-opacity-30 backdrop-blur-lg 
-                            absolute top-[8rem] left-[10%] z-10 rounded-xl  "
+                    className="h-[37rem] w-[80rem] flex items-center justify-center bg-gradient-to-br from-themeGreen to-themeGray  bg-opacity-30 backdrop-blur-lg 
+                            absolute top-[10.3rem] left-[15%] z-10 rounded-xl  "
                     style={{
                         boxShadow: "3px 3px 18px #1f2937, -3px 3px 20px #1f2937",
                     }}
@@ -109,7 +109,7 @@ const Persona = () => {
 
                                             <div className="w-[40%] h-full  flex flex-col items-center justify-center gap-1 ">
                                                 <div className="flex items-center justify-center gap-2 " >   
-                                                    <label htmlFor="background.education.level" className=" text-xl font-semibold text-white">Education Level:</label>
+                                                    <label htmlFor="background.education.level" className=" text-xl font-semibold text-themeCream">Education Level:</label>
                                                     <Field as="select" name="background.education.level" className="rounded-lg">
                                                         <option value="" disabled={true} >Select education level</option>
                                                         <option value="graduated">Graduated</option>
@@ -122,7 +122,7 @@ const Persona = () => {
 
                                             <div className="w-[40%] h-full flex flex-col items-center justify-center gap-1   ">
                                                 <div className="flex items-center justify-center gap-2 " >   
-                                                    <label htmlFor="experienceLevel" className=" text-xl font-semibold text-white">Experience Level</label>
+                                                    <label htmlFor="experienceLevel" className=" text-xl font-semibold text-themeCream">Experience Level</label>
                                                     <Field as="select" name="experienceLevel" className="rounded-lg" >
                                                         <option value="">Select experience level</option>
                                                         <option value="fresher">Fresher</option>
@@ -135,7 +135,7 @@ const Persona = () => {
 
                                             <div className="w-[20%] h-full flex flex-col items-center justify-center gap-1  ">
                                                 <div className="flex items-center justify-center gap-2 " >   
-                                                    <label htmlFor="background.yearsOfExperience" className="block text-xl font-semibold text-white">Years of Experience</label>
+                                                    <label htmlFor="background.yearsOfExperience" className="block text-xl font-semibold text-themeCream">Years of Experience</label>
                                                     <Field type="number" name="background.yearsOfExperience" className="w-[5rem] px-2 text-center rounded-lg text-lg font-medium " />
                                                 </div>
                                                 <ErrorMessage name="background.yearsOfExperience" component="div" className="text-red-500 mt-1" />
@@ -148,7 +148,7 @@ const Persona = () => {
                                             <div className="flex items-center space-x-4">
                                                 <label 
                                                     htmlFor="targetRole" 
-                                                    className="text-xl font-semibold text-white flex-shrink-0"
+                                                    className="text-xl font-semibold text-themeCream flex-shrink-0"
                                                 >
         Target Role
                                                 </label>
@@ -173,7 +173,7 @@ const Persona = () => {
 
                                             {/* has certifications */}
                                             <div className="">
-                                                <label className="block text-xl font-semibold text-white">
+                                                <label className="block text-xl font-semibold text-themeCream">
                                                     <Field type="checkbox" name="background.hasProjects" className="mr-2" />
                 Has Projects
                                                 </label>
@@ -182,7 +182,7 @@ const Persona = () => {
 
                                             {/* has projects */}
                                             <div className="">
-                                                <label className="block text-xl font-semibold text-white">
+                                                <label className="block text-xl font-semibold text-themeCream">
                                                     <Field type="checkbox" name="background.hasCertifications" className="mr-2" />
                 Has Certifications
                                                 </label>
@@ -193,7 +193,7 @@ const Persona = () => {
 
                                         {/* industry options */}
                                         <div className="mb-4">
-                                            <label htmlFor="background.industries" className="block text-xl font-semibold text-white">Select Industries</label>
+                                            <label htmlFor="background.industries" className="block text-xl font-semibold text-themeCream">Select Industries</label>
                                             <Field
                                                 name="background.industries"
                                                 render={({ field, form: { setFieldValue } }: FieldProps<FormValues>) => {
@@ -238,7 +238,7 @@ const Persona = () => {
 
                                         {/* strength options */}
                                         <div className="mb-4">
-                                            <label htmlFor="strengths" className="block text-xl font-semibold text-white">Select Strengths</label>
+                                            <label htmlFor="strengths" className="block text-xl font-semibold text-themeCream">Select Strengths</label>
                                             <Field
                                                 name="strengths"
                                                 render={({ field, form: { setFieldValue } }: FieldProps<FormValues>) => {
@@ -283,7 +283,7 @@ const Persona = () => {
 
                                         {/* goals options */}
                                         <div className="mb-4">
-                                            <label htmlFor="goals" className="block text-xl font-semibold text-white">Select Goals</label>
+                                            <label htmlFor="goals" className="block text-xl font-semibold text-themeCream">Select Goals</label>
                                             <Field
                                                 name="goals"
                                                 render={({ field, form: { setFieldValue } }: FieldProps<FormValues>) => {
@@ -329,7 +329,7 @@ const Persona = () => {
                                         <div>
                                             <button 
                                                 type="submit"
-                                                className={`${blackButton}`}
+                                                className="bg-themeCream text-themeBlack px-3 py-2 font-bold rounded-xl "
                                             >
                                                             Submit
                                             </button>

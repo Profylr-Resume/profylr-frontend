@@ -2,20 +2,22 @@ import { useFormik } from "formik";
 import { TextField } from "@mui/material";
 import loginValidationSchema from "@/validations/loginValidationSchema";
 import { useNavigate } from "react-router-dom";
+import useLoginUser from "@/hooks/userLoginUser";
+import { User } from "../../models/user.interface";
 
 const LoginForm = () => {
 
     const navigate = useNavigate();
 
-    const formik = useFormik({
+    const loginUserHandler = useLoginUser();
+
+    const formik = useFormik<User>({
         initialValues: {
             email: "",
             password: "",
         },
         validationSchema: loginValidationSchema,
-        onSubmit: (values) => {
-            console.log("Form data", values);
-        },
+        onSubmit: loginUserHandler ,
     });
 
     const handleSignUp = ()=>{
@@ -23,10 +25,10 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="flex items-center justify-center ">
+        <div className="flex flex-col gap-4 items-center justify-center  ">
             <form
                 onSubmit={formik.handleSubmit}
-                className="w-full  p-8 bg-gradient-to-tr from-themeLightGreen to-themeCream rounded-lg shadow-lg flex flex-col items-center gap-10"
+                className="w-full flex flex-col items-center gap-4 px-16 "
             >
 
                 {/* Email Field */}
@@ -39,8 +41,24 @@ const LoginForm = () => {
                     {...formik.getFieldProps("email")}
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.touched.email && formik.errors.email}
-                    InputProps={{
-                        className: "bg-white text-gray-700 placeholder-gray-500",
+                    sx={{
+                        "& .MuiOutlinedInput-root": {
+                            backgroundColor: "#ECDFCC", // Apply background color
+                            borderRadius: "12px",      // Apply rounded corners
+                        },
+                        "& .MuiInputBase-input": {
+                            color: "black",  
+                            fontWeight:"600"           // Text color
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "gray",       // Border color
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "black",      // Border color on hover
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "blue",       // Border color when focused
+                        },
                     }}
                 />
 
@@ -54,24 +72,40 @@ const LoginForm = () => {
                     {...formik.getFieldProps("password")}
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.touched.password && formik.errors.password}
-                    InputProps={{
-                        className: "bg-white text-gray-700 placeholder-gray-500",
+                    sx={{
+                        "& .MuiOutlinedInput-root": {
+                            backgroundColor: "#ECDFCC", // Apply background color
+                            borderRadius: "12px",      // Apply rounded corners
+                        },
+                        "& .MuiInputBase-input": {
+                            color: "black",  
+                            fontWeight:"600"           // Text color
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "gray",       // Border color
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "black",      // Border color on hover
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "blue",       // Border color when focused
+                        },
                     }}
                 />
 
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="py-2 px-10 text-xl font-semibold text-white rounded-xl bg-gradient-to-r from-themeDarkGreen to-themeLightGreen hover:bg-themeDarkGreen"
+                    className="py-2 px-10 text-xl  text-white bg-opacity-80 bg-themeBlack rounded-xl font-bold"
                 >
                     Log In
                 </button>
 
                 {/* Sign Up Link */}
-                <div className="text-center text-sm text-gray-600 mt-4">
+                <div className="text-center text-sm text-themeBlack">
                     <p>
                         Don’t have an account?{" "}
-                        <button className="text-blue-600 hover:underline font-semibold" onClick={handleSignUp}>
+                        <button className="text-themeCream underline tracking-wider hover:underline font-semibold" onClick={handleSignUp}>
                             Sign up
                         </button>
                     </p>
