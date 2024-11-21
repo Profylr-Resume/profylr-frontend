@@ -19,7 +19,7 @@ const renderEducationLevel = (level:string, title: string) => (
             <h2 className="font-semibold underline ">{title}</h2>
         </div>
         <body className="">
-            <div className=" flex items-center gap-4">
+            <div className=" flex items-center gap-4 ">
                 <div className="">
                     <Label
                         htmlFor={`${level}.instituteName`}

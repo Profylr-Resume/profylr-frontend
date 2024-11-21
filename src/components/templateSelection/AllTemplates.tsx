@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import GenerateResume from "@/pages/GenerateResume";
-import { templateSettings } from "lodash";
-import { useGetAllTemplatesQuery } from "@/redux/features/templateApi";
 import { TemplateType } from "@/models/template.type";
-import template1Thumbnail from "../../assets/images/template1.jpeg";
+import { useGetAllTemplatesQuery } from "@/redux/features/templateApi";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import template1Thumbnail from "../../assets/images/template1.jpeg";
 
-const ViewAllTemplates = () => {
+const AllTemplates = () => {
 
     const [activePreview, setActivePreview] = useState<string | null>(null);
     const [previewPosition, setPreviewPosition] = useState({ x: 0, y: 0 });
@@ -37,23 +35,16 @@ const ViewAllTemplates = () => {
             x: isRightEdge 
                 ? rect.left - previewWidth + 150 // Show on left with same 150px offset
                 : rect.right - 150, // Original right-side position
-            y: rect.top + scrollY - 580
+            y: rect.top + scrollY - 500
         });
         if(templateId){
             setActivePreview(templateId);
         }
     };
-
+    
     return (
-      
-        <div className="h-full w-full  py-10 px-10">
-            {/* Header Section */}
-            <div className="h-[10%] ">
-                <h2 className="text-5xl font-bold text-white mb-4">All Templates</h2>
-            </div>
-        
-        
-            <div className="h-[90%] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
+        <main className="w-full h-full py-10" >
+            <div className="h-full  overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 justify-items-center">
                 {allTemplates && allTemplates.length>0  && allTemplates.map((template) => (
                     <div
                         key={template._id}
@@ -113,10 +104,8 @@ const ViewAllTemplates = () => {
                     </div>
                 )}
             </div>
-  
-        </div>
+        </main>
     );
-    
 };
 
-export default ViewAllTemplates;
+export default AllTemplates;

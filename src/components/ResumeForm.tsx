@@ -12,19 +12,16 @@ const ResumeForm: React.FC = () => {
 
 
     return(
-       
         <section className="h-full w-full" >
-            <div className="h-[10%] w-full flex items-center justify-center" >
-                <h1 className="text-3xl font-bold text-themeDarkGreen" >Resume Form</h1>
-            </div>
-            <div className="h-[80%]" >
-                <Tabs defaultValue="basicInfo" className="w-full h-full">
-                    <TabsList className="h-[5%] w-full bg-themeCream " >
-                        <TabsTrigger value="basicInfo">Basic Info</TabsTrigger>
-                        <TabsTrigger value="education">Education</TabsTrigger>
-                        <TabsTrigger value="skills">Skills</TabsTrigger>
-                        <TabsTrigger value="projects">Projects</TabsTrigger>
-                        <TabsTrigger value="experience">Experience</TabsTrigger>
+            
+            <div className="h-full w-full py-8  " >
+                <Tabs defaultValue="basicInfo" className="w-full h-full flex flex-col items-center justify-center ">
+                    <TabsList className="h-[10%] w-[80%] flex items-center justify-center gap-8  bg-themeCream bg-opacity-40  rounded-full" >
+                        <TabsTrigger value="basicInfo" className="bg-themeGray text-white px-4 py-2 text-lg rounded-full h-full " >Basic Info</TabsTrigger>
+                        <TabsTrigger value="education" className="bg-themeGray text-white px-4 py-2 text-lg rounded-full h-full " >Education</TabsTrigger>
+                        <TabsTrigger value="skills" className="bg-themeGray text-white px-4 py-2 text-lg rounded-full h-full">Skills</TabsTrigger>
+                        <TabsTrigger value="projects" className="bg-themeGray text-white px-4 py-2 text-lg rounded-full h-full" >Projects</TabsTrigger>
+                        <TabsTrigger value="experience"  className="bg-themeGray text-white px-4 py-2 text-lg rounded-full h-full">Experience</TabsTrigger>
                     </TabsList>
                     <TabsContent value="basicInfo" className="h-[92%] w-full" > <BasicInfo/>  </TabsContent>
                     <TabsContent value="education" className="h-[92%] w-full" >  <Education/> </TabsContent>
@@ -34,8 +31,6 @@ const ResumeForm: React.FC = () => {
                 </Tabs>
             </div>
         </section>
-        
-      
     );
 };
 

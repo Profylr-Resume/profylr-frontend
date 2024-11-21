@@ -7,6 +7,7 @@ import FormikValueWatcher from "@/utils/formikValuesWatcher";
 import { debounce } from "lodash";
 import { updateBasicInfo } from "@/redux/features/resumeformSlice";
 import { RootState } from "../../redux/store";
+import { Button } from "../ui/button";
 
 const BasicInfo= () => {
 
@@ -37,55 +38,122 @@ const BasicInfo= () => {
     }, [basicInfo]);
     
     return (
-        <main className='h-full w-full  flex flex-col items-center justify-center ' > 
-            <Formik 
+        <main className="h-full w-full  flex flex-col items-center justify-center ">
+            <Formik
                 initialValues={initialValues}
                 validationSchema={basicInfoValidationSchema}
-                onSubmit={()=>{}}
+                onSubmit={() => {}}
                 enableReinitialize={true}
             >
                 {() => (
                     <>
-                        <Form className='h-full w-full flex flex-col items-center justify-center gap-4' >
-                            <div className=" flex flex-col  gap-6" > 
-                                <div className='text-xl font-semibold flex items-center  gap-2' >
-                                    <label htmlFor="name">Name</label>
-                                    <Field className="border border-gray-500 rounded-lg px-3 py-1"  autoComplete="off" name="name" type="text"   />
-                                    <ErrorMessage name="name" component="div" />
+                        <Form className="h-full w-full flex flex-col items-center justify-evenly mt-8">
+                            <div className="h-full flex flex-col w-full items-center justify-evenly space-y-6">
+                                {/* Row 1: Name, GitHub, LinkedIn */}
+                                <div className="flex space-x-8">
+                                    {/* Name Field */}
+                                    <div className="text-xl font-semibold flex flex-col items-start space-y-2">
+                                        <label htmlFor="name" className="w-36 text-themeCream tracking-wider ">
+        Name
+                                        </label>
+                                        <Field
+                                            className=" bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
+                                            autoComplete="off"
+                                            name="name"
+                                            type="text"
+                                        />
+                                        <ErrorMessage
+                                            name="name"
+                                            component="div"
+                                            className="text-red-500 text-sm"
+                                        />
+                                    </div>
+
+                                    {/* GitHub Field */}
+                                    <div className="text-xl font-semibold flex flex-col items-start space-y-2">
+                                        <label htmlFor="github" className="w-36 text-themeCream tracking-wider ">
+        GitHub
+                                        </label>
+                                        <Field
+                                            className="bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
+                                            name="github"
+                                            type="text"
+                                        />
+                                        <ErrorMessage
+                                            name="github"
+                                            component="div"
+                                            className="text-red-500 text-sm"
+                                        />
+                                    </div>
+
+                                    {/* LinkedIn Field */}
+                                    <div className="text-xl font-semibold flex flex-col items-start space-y-2">
+                                        <label htmlFor="linkedIn" className="w-36 text-themeCream tracking-wider ">
+        LinkedIn Link
+                                        </label>
+                                        <Field
+                                            className="bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
+                                            name="linkedIn"
+                                            type="text"
+                                        />
+                                        <ErrorMessage
+                                            name="linkedIn"
+                                            component="div"
+                                            className="text-red-500 text-sm"
+                                        />
+                                    </div>
                                 </div>
-                  
-                                <div className='text-xl font-semibold flex items-center  gap-2' >
-                                    <label htmlFor="github">GitHub</label>
-                                    <Field  className="border border-gray-500 rounded-lg px-3 py-1"  name="github" type="text" />
-                                    <ErrorMessage name="github" component="div" />
-                                </div>
-                  
-                                <div className='text-xl font-semibold flex items-center  gap-2' >
-                                    <label htmlFor="linkedIn">LinkedIn</label>
-                                    <Field  className="border border-gray-500 rounded-lg px-3 py-1"  name="linkedIn" type="text" />
-                                    <ErrorMessage name="linkedIn" component="div" />
-                                </div>
-                  
-                                <div className='text-xl font-semibold flex items-center  gap-2' >
-                                    <label htmlFor="email">Email</label>
-                                    <Field className="border border-gray-500 rounded-lg px-3 py-1"  name="email" type="email" />
-                                    <ErrorMessage name="email" component="div" />
-                                </div>
-                  
-                                <div className='text-xl font-semibold flex items-center  gap-2' >
-                                    <label htmlFor="phoneNumber">Phone Number</label>
-                                    <Field className="border border-gray-500 rounded-lg px-3 py-1"  name="phoneNumber" type="text" />
-                                    <ErrorMessage name="phoneNumber" component="div" />
+
+                                {/* Row 2: Email, Phone Number */}
+                                <div className="flex space-x-8">
+                                    {/* Email Field */}
+                                    <div className="text-xl font-semibold flex flex-col items-start space-y-2">
+                                        <label htmlFor="email" className="w-36 text-themeCream tracking-wider ">
+        Email
+                                        </label>
+                                        <Field
+                                            className="bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
+                                            name="email"
+                                            type="email"
+                                        />
+                                        <ErrorMessage
+                                            name="email"
+                                            component="div"
+                                            className="text-red-500 text-sm"
+                                        />
+                                    </div>
+
+                                    {/* Phone Number Field */}
+                                    <div className="text-xl font-semibold flex flex-col items-start space-y-2">
+                                        <label htmlFor="phoneNumber" className="w-40 text-themeCream tracking-wider ">
+        Phone Number
+                                        </label>
+                                        <Field
+                                            className="bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
+                                            name="phoneNumber"
+                                            type="text"
+                                        />
+                                        <ErrorMessage
+                                            name="phoneNumber"
+                                            component="div"
+                                            className="text-red-500 text-sm"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                            <button type="submit" >Submit</button>
+
+                            {/* <Button
+                                type="submit"
+                            >
+                                Compile
+                            </Button> */}
                         </Form>
+    
                         <FormikValueWatcher<BasicInfoType> onChange={handleOnChange} />
                     </>
                 )}
             </Formik>
         </main>
-
     );
 };
 
