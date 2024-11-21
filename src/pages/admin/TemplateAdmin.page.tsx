@@ -18,7 +18,7 @@ const TemplateAdmin = () => {
     };
 
     return (
-        <main className="h-screen w-screen bg-gradient-to-br from-themeLightPurple to-themeDarkPurple flex items-center justify-center relative  " >
+        <main className="h-screen w-screen bg-gradient-to-br from-themeGreen to-themeGray flex items-center justify-center relative  " >
             <div className=" h-full w-full  relative  " >
                 <h1 className="font-bold text-white text-[11rem]  absolute top-[-3rem] left-[10%] " >Admin Template </h1>
             
