@@ -96,22 +96,7 @@ const Experience =() => {
   
     return (
         <main className="h-full w-full flex flex-col items-center justify-center" > 
-            {experiences && experiences.length>0 && experiences.map((exp)=> 
-                (
-                    <main key={exp.id} className="flex items-center gap-4">
-                        <Accordion  type="single" collapsible={true}>
-                            <AccordionItem  value={exp.id} className="w-[50rem]" >
-                                <AccordionTrigger>{exp.organisationName}</AccordionTrigger>
-                                <AccordionContent>
-                                    <ExperienceInAccordion experience={exp} />
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
-                        <Button variant={"default"} size={"sm"} onClick={()=> handlePrefillForm(exp)} >Update</Button>
-                        <Button variant={"destructive"} size={"sm"} onClick={()=> handleRemoveExperience(exp.id)} >Remove</Button>
-                    </main>
-                )) 
-            }
+          
             <Formik
                 initialValues={isFormPreFilled? prefilledValues : initialValues}
                 validationSchema={experienceValidationSchema}
@@ -173,6 +158,23 @@ const Experience =() => {
                     </>
                 )}
             </Formik>
+
+            {experiences && experiences.length>0 && experiences.map((exp)=> 
+                (
+                    <main key={exp.id} className="flex items-center gap-4">
+                        <Accordion  type="single" collapsible={true}>
+                            <AccordionItem  value={exp.id} className="w-[50rem]" >
+                                <AccordionTrigger>{exp.organisationName}</AccordionTrigger>
+                                <AccordionContent>
+                                    <ExperienceInAccordion experience={exp} />
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                        <Button variant={"default"} size={"sm"} onClick={()=> handlePrefillForm(exp)} >Update</Button>
+                        <Button variant={"destructive"} size={"sm"} onClick={()=> handleRemoveExperience(exp.id)} >Remove</Button>
+                    </main>
+                )) 
+            }
         </main>
     );
 };

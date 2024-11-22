@@ -7,12 +7,7 @@ import { RootState } from "@/redux/store";
 import { InitialStateType } from "@/interface/InitialState.type";
 import { addSkill, removeSkill, updateSkill } from "@/redux/features/resumeformSlice";
 import { v4 as uuidv4 } from "uuid";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion";
+
 import { Button } from "../ui/button";
 
 // initial values will always be empty . coz we will update the state on CTA (add skill)
@@ -30,45 +25,7 @@ const initialValues = {
     id:uuidv4()
 };
 
-const SkillInAccordion = ({skill}:{skill:SkillsType})=> {
-    return (
-        <section className="flex flex-col " >
-            <div className="flex items-center justify-between" >
-                <div className="flex flex-col ">
-                    <div className="flex items-center text-xs ">
-                        <h4 className="font-semibold underline" >Name:</h4>
-                        <p>{skill.name}</p>
-                    </div>
-                    <div className="flex">
-                        <h4>Proficiency:</h4>
-                        <p>{skill.proficiencyLevel}</p>
-                    </div>
-                </div>
-                <div className="flex flex-col">
-                    <div className="flex" >
-                        <h4>Years of Exp.:</h4>
-                        <p>{skill.yearsOfExperience}</p>
-                    </div>
-                    <div className="flex" >
-                        <h4>End Date:</h4>
-                        <p>{skill.category}</p>
-                    </div>
-                </div>
-            </div>
-            <div className="flex " >
-                <div className="flex" >
-                    <h2>Credentials:</h2>
-                    <div className="flex flex-col" >
-                        <p>{skill.credentials.certificateUrl}</p>
-                        <p>{skill.credentials.dateObtained}</p>
-                        <p>{skill.credentials.issuingOrganization}</p>
-                        <p>{skill.credentials.expiryDate}</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-};
+
 
 const Skills =() => {
 
@@ -103,35 +60,7 @@ const Skills =() => {
     }, [skills]);
       
     return (
-        <main className="h-full w-full flex flex-col items-center justify-center">
-            {skills &&
-            skills.length > 0 &&
-            skills.map((skill) => (
-                <main key={skill.id} className="flex items-center gap-4">
-                    <Accordion type="single" collapsible={true}>
-                        <AccordionItem value={skill.id} className="w-[50rem]">
-                            <AccordionTrigger>{skill.name}</AccordionTrigger>
-                            <AccordionContent>
-                                <SkillInAccordion skill={skill} />
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    <Button
-                        variant={"default"}
-                        size={"sm"}
-                        onClick={() => handlePrefillForm(skill)}
-                    >
-                  Update
-                    </Button>
-                    <Button
-                        variant={"destructive"}
-                        size={"sm"}
-                        onClick={() => handleRemoveSkill(skill.id)}
-                    >
-                  Remove
-                    </Button>
-                </main>
-            ))}
+        <main className="h-full w-full flex flex-col  items-center justify-start">
             <Formik
                 initialValues={isFormPreFilled ? prefilledValues : initialValues}
                 validationSchema={skillsValidationsSchema}
@@ -144,17 +73,17 @@ const Skills =() => {
             >
                 {({ isSubmitting }) => (
                     <>
-                        <Form className="max-w-5xl mx-auto flex flex-col gap-4">
+                        <Form className="h-[90%] w-full  flex flex-col justify-evenly px-10 py-5 ">
                             {/* Row 1: Name and Category */}
                             <div className="flex justify-between gap-4">
-                                <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="name" className="font-medium">
+                                <div className="flex flex-col ">
+                                    <label htmlFor="name"  className="text-themeCream tracking-wider ">
                         Name
                                     </label>
                                     <Field
                                         name="name"
                                         type="text"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="name"
@@ -163,14 +92,14 @@ const Skills =() => {
                                     />
                                 </div>
     
-                                <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="proficiencyLevel" className="font-medium">
+                                <div className="flex flex-col ">
+                                    <label htmlFor="proficiencyLevel"  className="text-themeCream tracking-wider ">
                         Proficiency Level
                                     </label>
                                     <Field
                                         as="select"
                                         name="proficiencyLevel"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     >
                                         <option value="Beginner">Beginner</option>
                                         <option value="Intermediate">Intermediate</option>
@@ -184,14 +113,14 @@ const Skills =() => {
                                     />
                                 </div>
     
-                                <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="yearsOfExperience" className="font-medium">
+                                <div className="flex flex-col ">
+                                    <label htmlFor="yearsOfExperience"  className="text-themeCream tracking-wider ">
                         Years of Experience
                                     </label>
                                     <Field
                                         name="yearsOfExperience"
                                         type="number"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="yearsOfExperience"
@@ -203,14 +132,14 @@ const Skills =() => {
     
                             {/* Row 2: Category field (moved under Name) */}
                             <div className="flex justify-between gap-4">
-                                <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="category" className="font-medium">
+                                <div className="flex flex-col ">
+                                    <label htmlFor="category"  className="text-themeCream tracking-wider ">
                         Category
                                     </label>
                                     <Field
                                         as="select"
                                         name="category"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     >
                                         <option value="">Select Category</option>
                                         <option value="Programming Languages">
@@ -236,17 +165,17 @@ const Skills =() => {
     
                             {/* Row 3: Certificate URL, Issuing Organization, Date Obtained */}
                             <div className="flex justify-between gap-4">
-                                <div className="flex flex-col w-[30%]">
+                                <div className="flex flex-col ">
                                     <label
                                         htmlFor="credentials.certificateUrl"
-                                        className="font-medium"
+                                        className="text-themeCream tracking-wider "
                                     >
                         Certificate URL
                                     </label>
                                     <Field
                                         name="credentials.certificateUrl"
                                         type="url"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="credentials.certificateUrl"
@@ -255,17 +184,17 @@ const Skills =() => {
                                     />
                                 </div>
     
-                                <div className="flex flex-col w-[30%]">
+                                <div className="flex flex-col">
                                     <label
                                         htmlFor="credentials.issuingOrganization"
-                                        className="font-medium"
+                                        className="text-themeCream tracking-wider "
                                     >
                         Issuing Organization
                                     </label>
                                     <Field
                                         name="credentials.issuingOrganization"
                                         type="text"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="credentials.issuingOrganization"
@@ -274,17 +203,17 @@ const Skills =() => {
                                     />
                                 </div>
     
-                                <div className="flex flex-col w-[30%]">
+                                <div className="flex flex-col ">
                                     <label
                                         htmlFor="credentials.dateObtained"
-                                        className="font-medium"
+                                        className="text-themeCream tracking-wider "
                                     >
                         Date Obtained
                                     </label>
                                     <Field
                                         name="credentials.dateObtained"
                                         type="date"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="credentials.dateObtained"
@@ -296,17 +225,17 @@ const Skills =() => {
     
                             {/* Row 4: Expiry Date (moved under Certificate URL) */}
                             <div className="flex justify-between gap-4">
-                                <div className="flex flex-col w-[30%]">
+                                <div className="flex flex-col ">
                                     <label
                                         htmlFor="credentials.expiryDate"
-                                        className="font-medium"
+                                        className="text-themeCream tracking-wider "
                                     >
                         Expiry Date
                                     </label>
                                     <Field
                                         name="credentials.expiryDate"
                                         type="date"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="credentials.expiryDate"
@@ -315,12 +244,11 @@ const Skills =() => {
                                     />
                                 </div>
                             </div>
-    
                             {/* Submit Button */}
                             <div className="w-full flex justify-center mt-4">
                                 <Button
                                     type="submit"
-                                    className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                                    className="bg-white text-themeGray font-medium px-4 py-2 rounded-lg"
                                 >
                                     {isFormPreFilled && skills.length > 0
                                         ? "Update"
@@ -331,6 +259,36 @@ const Skills =() => {
                     </>
                 )}
             </Formik>
+            {skills &&
+            skills.length > 0 &&
+            skills.map((skill) => (
+                <div
+                    key={skill.id}
+                    className="flex items-center bg-gray-200 text-gray-700 rounded-full px-4 py-2 shadow-sm gap-2"
+                >
+                    <span>{skill.name}</span>
+                    <button
+                        onClick={() => handleRemoveSkill(skill.id)}
+                        className="text-red-500 hover:text-red-700"
+                        aria-label={`Remove ${skill.name}`}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            ))}
         </main>
     );
 };

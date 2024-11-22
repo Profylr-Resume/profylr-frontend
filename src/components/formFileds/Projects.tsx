@@ -6,12 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { v4 as uuidv4 } from "uuid";
 import { addProject, removeProject, updateProject } from "@/redux/features/resumeformSlice";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion";
+
 import { InitialStateType } from "@/interface/InitialState.type";
 import { Button } from "../ui/button";
 
@@ -106,34 +101,7 @@ const Projects =  () => {
 
     return (
         <main className="h-full w-full flex flex-col items-center justify-center">
-            {projects &&
-            projects.length > 0 &&
-            projects.map((proj) => (
-                <main key={proj.id} className="flex items-center gap-4">
-                    <Accordion type="single" collapsible={true}>
-                        <AccordionItem value={proj.id} className="w-[50rem]">
-                            <AccordionTrigger>{proj.name}</AccordionTrigger>
-                            <AccordionContent>
-                                <ProjectInAccordion project={proj} />
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    <Button
-                        variant={"default"}
-                        size={"sm"}
-                        onClick={() => handlePrefillForm(proj)}
-                    >
-                  Update
-                    </Button>
-                    <Button
-                        variant={"destructive"}
-                        size={"sm"}
-                        onClick={() => handleRemoveProject(proj.id)}
-                    >
-                  Remove
-                    </Button>
-                </main>
-            ))}
+         
             <Formik
                 initialValues={isFormPreFilled ? prefilledValues : initialValues}
                 validationSchema={projectValidationSchema}
@@ -146,17 +114,17 @@ const Projects =  () => {
             >
                 {({ values, isSubmitting }) => (
                     <>
-                        <Form className="max-w-4xl mx-auto flex flex-col gap-8">
+                        <Form className="h-[90%] w-full  flex flex-col justify-evenly px-10 py-5 ">
                             {/* Row 1 */}
                             <div className="flex justify-between gap-4">
-                                <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="name" className="font-medium">
+                                <div className="flex flex-col ">
+                                    <label htmlFor="name" className="text-white tracking-wider ">
                         Project Name
                                     </label>
                                     <Field
                                         name="name"
                                         type="text"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="name"
@@ -166,7 +134,7 @@ const Projects =  () => {
                                 </div>
     
                                 <div className="flex flex-col w-[30%]">
-                                    <label className="font-medium">Technologies Used</label>
+                                    <label className="text-white tracking-wider ">Technologies Used</label>
                                     <FieldArray name="technologiesUsed">
                                         {({ push, remove }) => (
                                             <div>
@@ -179,7 +147,7 @@ const Projects =  () => {
                                                             name={`technologiesUsed[${index}]`}
                                                             type="text"
                                                             placeholder={`Technology ${index + 1}`}
-                                                            className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                                            className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                                         />
                                                         <button
                                                             type="button"
@@ -203,14 +171,14 @@ const Projects =  () => {
                                 </div>
     
                                 <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="from" className="font-medium">
+                                    <label htmlFor="from" className="text-white tracking-wider ">
                         Start Date (YYYY-MM)
                                     </label>
                                     <Field
                                         name="from"
                                         type="text"
                                         placeholder="YYYY-MM"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="from"
@@ -223,14 +191,14 @@ const Projects =  () => {
                             {/* Row 2 */}
                             <div className="flex justify-between gap-4">
                                 <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="to" className="font-medium">
+                                    <label htmlFor="to" className="text-white tracking-wider ">
                         End Date (YYYY-MM)
                                     </label>
                                     <Field
                                         name="to"
                                         type="text"
                                         placeholder="YYYY-MM"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="to"
@@ -240,14 +208,14 @@ const Projects =  () => {
                                 </div>
     
                                 <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="sourceCodeRepository" className="font-medium">
+                                    <label htmlFor="sourceCodeRepository" className="text-white tracking-wider ">
                         Source Code Repository
                                     </label>
                                     <Field
                                         name="sourceCodeRepository"
                                         type="url"
                                         placeholder="https://github.com/your-repo"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="sourceCodeRepository"
@@ -256,15 +224,15 @@ const Projects =  () => {
                                     />
                                 </div>
     
-                                <div className="flex flex-col w-[30%]">
-                                    <label htmlFor="liveLink" className="font-medium">
+                                <div className="flex flex-col ">
+                                    <label htmlFor="liveLink" className="text-white tracking-wider ">
                         Live Link
                                     </label>
                                     <Field
                                         name="liveLink"
                                         type="url"
                                         placeholder="https://your-project-link.com"
-                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                                     />
                                     <ErrorMessage
                                         name="liveLink"
@@ -276,7 +244,7 @@ const Projects =  () => {
     
                             {/* Row 3 */}
                             <div className="flex flex-col">
-                                <label className="font-medium">Project Description</label>
+                                <label className="text-white tracking-wider ">Project Description</label>
                                 <FieldArray name="description">
                                     {({ push, remove }) => (
                                         <div>
@@ -289,7 +257,7 @@ const Projects =  () => {
                                                         name={`description[${index}]`}
                                                         type="text"
                                                         placeholder={`Description ${index + 1}`}
-                                                        className="border border-gray-500 px-2 py-1 rounded-lg w-full"
+                                                        className=" bg-themeCream bg-opacity-40 text-themeBlack font-medium text-lg border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-themeGray"
                                                     />
                                                     <button
                                                         type="button"
@@ -316,7 +284,7 @@ const Projects =  () => {
                             <div className="flex justify-center">
                                 <Button
                                     type="submit"
-                                    className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                                    className="bg-white text-themeGray font-bold px-4 py-2 rounded-lg"
                                 >
                                     {isFormPreFilled && projects.length > 0
                                         ? "Update"
@@ -327,6 +295,33 @@ const Projects =  () => {
                     </>
                 )}
             </Formik>
+            {projects &&
+            projects.length > 0 &&
+            projects.map((p) => (
+                <main key={p.id}   className="flex items-center bg-gray-200 text-gray-700 rounded-full px-4 py-2 shadow-sm gap-2">
+                    <span>{p.name}</span>
+                    <button
+                        onClick={() => handleRemoveProject(p.id)}
+                        className="text-red-500 hover:text-red-700"
+                        aria-label={`Remove ${p.name}`}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                </main>
+            ))}
         </main>
     );
 };

@@ -14,23 +14,23 @@ import { InitialStateType } from "@/interface/InitialState.type";
 
 
 const renderEducationLevel = (level:string, title: string) => (
-    <div className="">
+    <div className="flex flex-col items-start">
         <div className="">
-            <h2 className="font-semibold underline ">{title}</h2>
+            <h2 className="font-semibold underline text-xl text-white tracking-wider ">{title}</h2>
         </div>
-        <body className="">
+        <div className="bg-transparent">
             <div className=" flex items-center gap-4 ">
-                <div className="">
+                <div className="flex flex-col items-start gap-1">
                     <Label
                         htmlFor={`${level}.instituteName`}
-                        className=""
+                        className="text-themeCream tracking-wider "
                     >
-          Institute Name
+                        Institute Name
                     </Label>
                     <Field
                         name={`${level}.instituteName`}
                         as={Input}
-                        className="border border-gray-400 "
+                        className=" bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                     />
                     <ErrorMessage
                         name={`${level}.instituteName`}
@@ -41,7 +41,7 @@ const renderEducationLevel = (level:string, title: string) => (
                 <div className="">
                     <Label
                         htmlFor={`${level}.yearOfPassing`}
-                        className=""
+                        className="text-themeCream tracking-wider "
                     >
           Year
                     </Label>
@@ -49,7 +49,7 @@ const renderEducationLevel = (level:string, title: string) => (
                         name={`${level}.yearOfPassing`}
                         as={Input}
                         type="number"
-                        className="border border-gray-400"
+                        className=" bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-36 focus:outline-none focus:ring-2 focus:ring-themeGray"
                     />
                     <ErrorMessage
                         name={`${level}.yearOfPassing`}
@@ -62,14 +62,14 @@ const renderEducationLevel = (level:string, title: string) => (
                     <div >
                         <Label
                             htmlFor={`${level}.field`}
-                          
+                            className="text-themeCream tracking-wider "
                         >
             Specialization
                         </Label>
                         <Field
                             name={`${level}.field`}
                             as={Input}
-                            className="border border-gray-400"
+                            className=" bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-themeGray"
                         />
                         <ErrorMessage
                             name={`${level}.field`}
@@ -80,6 +80,7 @@ const renderEducationLevel = (level:string, title: string) => (
                 <div >
                     <Label
                         htmlFor={`${level}.result`}
+                        className="text-themeCream tracking-wider "
                     >
                     Result 
                     </Label>
@@ -87,7 +88,7 @@ const renderEducationLevel = (level:string, title: string) => (
                         name={`${level}.result`}
                         as={Input}
                         type="number"
-                        className="border border-gray-400"
+                        className=" bg-themeCream bg-opacity-40 text-themeBlack text-lg border border-gray-300 rounded-lg px-3 py-2 w-36 focus:outline-none focus:ring-2 focus:ring-themeGray"
                     />
                     <ErrorMessage
                         name={`${level}.result`}
@@ -95,7 +96,7 @@ const renderEducationLevel = (level:string, title: string) => (
                     />
                 </div>
             </div>
-        </body>
+        </div>
     </div>
 );
 
@@ -138,7 +139,7 @@ const Education = () => {
     }, [education]);
 
     return (
-        <main className="h-full w-full flex items-center justify-center">
+        <main className="h-full w-full  flex items-center justify-center">
             <Formik
                 initialValues={initialValues}
                 validationSchema={educationValidationSchema}
@@ -146,7 +147,7 @@ const Education = () => {
             >
                 {()=>(
                     <>
-                        <Form className="flex flex-col gap-8">
+                        <Form className="h-full w-full flex flex-col items-center justify-evenly">
                             {renderEducationLevel("underGraduate", "Undergraduate")}
                             {renderEducationLevel("twelfthGrade", "12th Grade")}
                             {renderEducationLevel("tenthGrade", "10th Grade")}
