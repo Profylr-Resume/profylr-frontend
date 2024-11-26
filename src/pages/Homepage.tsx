@@ -4,35 +4,58 @@ import Persona from "./Persona";
 import TemplateSelection from "./TemplateSelection";
 import GenerateResume from "./GenerateResume";
 
-// Custom section components
-const SectionOne = () => <Persona />;
-const SectionTwo = () => <TemplateSelection />;
-const SectionThree = () => <GenerateResume />;
+// Define a type for the Section object
+interface Section {
+    id: number;
+    label: string;
+    color: string;
+    component: React.ComponentType<{ isActive: boolean }>;
+}
 
-const sections = [
+
+// Custom section components
+const SectionOne: React.FC<{ isActive: boolean }> = ({ isActive }) => (
+    <Persona isActive={isActive} />
+);
+
+const SectionTwo: React.FC<{ isActive: boolean }> = ({ isActive }) => (
+    <TemplateSelection isActive={isActive} />
+);
+
+const SectionThree: React.FC<{ isActive: boolean }> = ({ isActive }) => (
+    <GenerateResume isActive={isActive} />
+);
+
+
+// Section array
+const sections: Section[] = [
     { id: 1, label: "Persona", color: "bg-blue-500", component: SectionOne },
     { id: 2, label: "Template", color: "bg-green-500", component: SectionTwo },
     { id: 3, label: "Generate", color: "bg-red-500", component: SectionThree },
 ];
 
 const Homepage = () => {
-    const [activeSection, setActiveSection] = useState(0);
-    const sectionRefs = useRef([]);
+    const [activeSection, setActiveSection] = useState<number>(0);
+
+    const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
-        const observerOptions = { threshold: 0.5 };
+        const observerOptions: IntersectionObserverInit = { threshold: 0.5 };
 
-        const observerCallback = (entries) => {
+        const observerCallback: IntersectionObserverCallback = (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    const index = sectionRefs.current.indexOf(entry.target);
+                    const index = sectionRefs.current.findIndex((ref) => ref === entry.target);
                     if (index !== -1) setActiveSection(index);
                 }
             });
         };
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
-        sectionRefs.current.forEach((ref) => observer.observe(ref));
+
+        sectionRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
 
         return () => observer.disconnect();
     }, []);
@@ -43,6 +66,7 @@ const Homepage = () => {
         animate: { opacity: 1, y: 0 }, // Page moves into place and becomes visible
         exit: { opacity: 0, y: -50 }, // Page moves up and fades out
     };
+
 
     return (
         <div className="relative flex">
@@ -107,7 +131,8 @@ const Homepage = () => {
                         exit="exit"
                         transition={{ duration: 0.6, ease: "easeInOut" }}
                     >
-                        <Component />
+                        {/* Pass isActive prop */}
+                        <Component isActive={activeSection === index} />
                     </motion.div>
                 ))}
             </div>

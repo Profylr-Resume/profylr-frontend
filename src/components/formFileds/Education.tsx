@@ -43,7 +43,7 @@ const renderEducationLevel = (level:string, title: string) => (
                         htmlFor={`${level}.yearOfPassing`}
                         className="text-themeCream tracking-wider "
                     >
-          Year
+          Year of passing
                     </Label>
                     <Field
                         name={`${level}.yearOfPassing`}
@@ -108,7 +108,7 @@ const Education = () => {
     const debounceUpdateState = useCallback(
         debounce((newValues)=>{
             dispatch(updateEducation(newValues));
-        },2000)
+        },1000)
         ,[]);
 
     const initialValues: EducationType = {

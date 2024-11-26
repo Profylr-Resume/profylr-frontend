@@ -30,12 +30,14 @@ export const deletePersonaApi = async (personaId: string): Promise<any> => {
     }
 };
 
-export const getPersonalizedTemplateStructureApi = async (data): Promise<any> => {
+export const getPersonalizedTemplateStructureApi = async (payload,token): Promise<any> => {
     try {
-        const response = await axios.post(`${BASE_URL}/user/misc`, data, {
-            headers: {
+        
+        const response = await axios.post(`${BASE_URL}/user/misc/personalized-templates`, payload, {
+            headers : {
                 "Content-Type": "application/json",
-            },
+                "Authorization": token ? `Bearer ${token}` : ""
+            }
         });
         console.log(response);
         return response.data;

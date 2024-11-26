@@ -1,6 +1,7 @@
 import { createPersonaApi, deletePersonaApi, getPersonalizedTemplateStructureApi } from "@/api/persona.api";
 import { PersonaType } from "@/models/persona.interface";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 
 export interface PersonaState {
   loading: boolean;
@@ -8,6 +9,8 @@ export interface PersonaState {
   error: boolean | null;
   message?:string
 }
+
+
 
 const initialState :PersonaState = {
     persona:{
@@ -30,6 +33,7 @@ const initialState :PersonaState = {
 };
 
 
+
 // Async thunk for creating a persona
 export const createPersonaThunk = createAsyncThunk (
     "persona/createPersona",
@@ -48,9 +52,11 @@ export const createPersonaThunk = createAsyncThunk (
 
 export const personalizedTemplateStrutureThunk = createAsyncThunk (
     "persona/personalizedTemplateStructure",
-    async (payload: PersonaType, { rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
+        console.log(data);
+        const {token,...payload} = data;
         try {
-            const {data,error,message} = await getPersonalizedTemplateStructureApi(payload);
+            const {data,error,message} = await getPersonalizedTemplateStructureApi(payload,token);
             if (error) {
                 return rejectWithValue(error);
             }

@@ -9,13 +9,12 @@ export const useAuth = (): boolean => {
     const { isAuthenticated } = useSelector((state: RootState):AuthState => state.auth);
     const dispatch = useDispatch();
 
-    // Only check for the token and dispatch login once on component mount
-    useEffect(() => {
-        const token = Cookies.get("auth_token");
-        if (token) {
-            dispatch(login(token)); // Dispatch the login action with the token
-        }
-    }, [dispatch]); // Empty dependency array ensures this only runs once
+    // Check for token synchronously
+    const token = Cookies.get("auth_token");
+    if (token && !isAuthenticated) {
+        // Dispatch login synchronously if token is found and user is not authenticated
+        dispatch(login(token));
+    }
 
     return isAuthenticated;
 };

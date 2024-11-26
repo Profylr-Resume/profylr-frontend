@@ -18,7 +18,7 @@ const BasicInfo= () => {
         debounce((newValues)=>{
             console.log(newValues);
             dispatch( updateBasicInfo(newValues));
-        },2000)
+        },1000)
         ,[]);
 
     const initialValues:BasicInfoType  = {

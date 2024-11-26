@@ -1,8 +1,9 @@
 import GeneratedResume from "@/components/Template1";
 import ResumeForm from "@/components/ResumeForm";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useGetTemplateByIdQuery } from "@/redux/features/templateApi";
 
-const GenerateResume = () => {
+const GenerateResume:React.FC<{isActive:boolean}> = ({isActive}) => {
 
     const [isHovering, setIsHovering] = useState(false);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -16,6 +17,14 @@ const GenerateResume = () => {
 
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
+
+    
+    const id = "673a077370cfd723338a7a6c";
+    const {data:selectedTemplate} = useGetTemplateByIdQuery(id);
+
+    useEffect(()=>{
+        console.log(selectedTemplate);
+    },[selectedTemplate]);
 
     return (
         <main className="h-screen w-screen bg-gradient-to-br from-themeGreen to-themeGray flex items-center justify-center relative  " >
@@ -57,7 +66,7 @@ const GenerateResume = () => {
                                     }}
                                 >
                                     <div className="h-full w-full overflow-y-auto " >
-                                        <GeneratedResume/>
+                                        <GeneratedResume template={selectedTemplate} />
                                     </div>
                                 </div>
                             )}

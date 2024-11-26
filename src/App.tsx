@@ -25,11 +25,10 @@ const  App = ()=> {
                 <Route path="/" element={<RootLayout/>} >
                     <Route path="/login" element={<Login/>} />
                     <Route path="/register" element={<Register/>} />
-                    <Route path="/template" element={<TemplateAdmin />} />
-                    <Route path="/section" element={<ResumeSection />} />
-                    <Route path="/home" element={<Homepage />} />
                     <Route  element={<ProtectedLayout/>} >
-                  
+                        <Route path="/template" element={<TemplateAdmin />} />
+                        <Route path="/section" element={<ResumeSection />} />
+                        <Route path="/home" element={<Homepage />} />
                     </Route>
                 </Route>
 

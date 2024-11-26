@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const GeneratedResume = () => {
+const GeneratedResume = ({template}) => {
+
+    const [selectedTemplate,setSelectedTemplate] = useState(null);
+
+    useEffect(()=>{
+        if(template){
+            setSelectedTemplate(template);
+        }
+    },[template]);
     return (
         <>
             <main className='h-full w-full' >
