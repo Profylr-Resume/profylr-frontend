@@ -6,9 +6,11 @@ const GeneratedResume = ({template}) => {
 
     useEffect(()=>{
         if(template){
+            // const finaltemplate = useUpdateGivenTemplateWithRecommendations()
             setSelectedTemplate(template);
         }
     },[template]);
+
     return (
         <>
             <main className='h-full w-full' >

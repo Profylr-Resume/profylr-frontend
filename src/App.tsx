@@ -11,6 +11,7 @@ import ResumeSection from "./pages/admin/ResumeSections.page";
 import TemplateAdmin from "./pages/admin/TemplateAdmin.page";
 import { checkAuth } from "./redux/features/authSlice";
 import ProtectedLayout from "./layout/ProtectedLayout";
+import ChooseDirection from "./pages/ChooseDirection";
 
 const  App = ()=> {
     const dispatch = useDispatch();
@@ -28,7 +29,13 @@ const  App = ()=> {
                     <Route  element={<ProtectedLayout/>} >
                         <Route path="/template" element={<TemplateAdmin />} />
                         <Route path="/section" element={<ResumeSection />} />
+
                         <Route path="/home" element={<Homepage />} />
+                        <Route path="/select-service" element={<ChooseDirection/>} />
+
+                        <Route path="/manual-resume" element={<ChooseDirection/>} />
+                        <Route path="/ai-resume" element={<Homepage/>} />
+                        <Route path="/webscrap" element={<ChooseDirection/>} />
                     </Route>
                 </Route>
 
