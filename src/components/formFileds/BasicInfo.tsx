@@ -16,7 +16,7 @@ const BasicInfo= () => {
 
     const debounceStateUpdate = useCallback(
         debounce((newValues)=>{
-            console.log(newValues);
+            // console.log(newValues);
             dispatch( updateBasicInfo(newValues));
         },1000)
         ,[]);
@@ -33,9 +33,9 @@ const BasicInfo= () => {
         debounceStateUpdate(values);
     };
 
-    useEffect(():void => {
-        console.log(basicInfo);
-    }, [basicInfo]);
+    // useEffect(():void => {
+    //     console.log(basicInfo);
+    // }, [basicInfo]);
     
     return (
         <main className="h-full w-full  flex flex-col items-center justify-center ">

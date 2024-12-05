@@ -81,9 +81,9 @@ const CreatePersona = () => {
     }, [error,message]);
 
     
-    useEffect(()=>{
-        console.log(persona);
-    },[persona]);
+    // useEffect(()=>{
+    //     console.log(persona);
+    // },[persona]);
 
     return (
         <div className="h-full w-full " >

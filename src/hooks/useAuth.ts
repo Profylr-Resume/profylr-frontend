@@ -12,12 +12,9 @@ export const useAuth = async():Promise<boolean> => {
     // Check for token synchronously
     const token = Cookies.get("auth_token");
 
-    const [loginUsingToken] = useLoginUsingTokenMutation(); 
-  
+
     if (token && !isAuthenticated) {
 
-        const res = await loginUsingToken(token);
-        console.log(res);
         // Dispatch login synchronously if token is found and user is not authenticated
         dispatch(login(token));
     }

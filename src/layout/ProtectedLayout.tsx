@@ -1,19 +1,27 @@
 import { useAuth } from "@/hooks/useAuth";
+import { useLoginWithToken } from "@/hooks/useLoginWihtToken";
 import UserProfile from "@/shared/UserProfile";
 import { useEffect } from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, useNavigate } from "react-router-dom";
 
-const ProtectedLayout = ():JSX.Element => {
-
+const ProtectedLayout = () => {
+    const loginRes = useLoginWithToken();
     const isAuthenticated = useAuth();
-   
+    const navigate = useNavigate();
     useEffect(()=>{
         console.log(isAuthenticated);
     },[isAuthenticated]);
 
-    if(!isAuthenticated){
+    useEffect(()=>{
+        if(loginRes && loginRes?.error){
+            navigate("/login");
+        }
+    },[loginRes]);
+    if(!isAuthenticated ){
         return <Navigate to="/login" />;
     }
+
+  
 
     return(
         <main className="flex h-full w-full bg-gradient-to-br from-themeGreen to-themeGray " >
