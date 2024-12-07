@@ -1,20 +1,40 @@
 import React from "react";
-import { Search} from "lucide-react";
+import { Bell, CalendarDays, ChevronDown, Menu, Search} from "lucide-react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import avatar from "../../assets/icons/avatars/avatar1.jpg";
 
 const DashboardHeader = () => {
     return (
-        <div className="flex items-center justify-between pb-8">
-            <div className="space-y-1">
-                <h2 className="text-2xl font-semibold tracking-tight text-white">Projects</h2>
-            </div>
-            <div className="flex items-center space-x-4">
-                <div className="relative">
-                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input placeholder="Search projects..." className="pl-8 bg-gray-900 border-gray-800" />
+        <div className="w-full h-full flex justify-between " >
+            <div className="flex items-center gap-10 " > 
+                <div>
+                    <Menu size={30} />
                 </div>
-                <Button className="bg-purple-600 hover:bg-purple-700">Create Project</Button>
+                <div className=" bg-white flex items-center  border-2 rounded-full  " >
+                    <label htmlFor="search" className="px-3" > <Search/> </label>   
+                    <input
+                        type="text"
+                        name="search"
+                        id="search"
+                        className="border-0 h-12 rounded-r-[2rem] w-[26rem] bg-white focus:ring-gray-200 focus:ring-2 focus:outline-none"
+                    />
+
+                </div>
+            </div>
+            <div className="flex items-center  " >
+                <div className="flex items-center justify-center gap-8 border-r-4 border-gray-400 px-12" >
+                    <Bell className="text-gray-800  " />
+                    <CalendarDays className="text-gray-800  " />
+                </div>
+               
+                <div className="flex items-center gap-3 px-8" >
+                    <div className="flex items-center justify-center rounded-full ">
+                        <img src={avatar} alt="Avatar" className="h-12 w-10 rounded-full " />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-800 " >Hemant</h3>
+                    <ChevronDown/>
+                </div>
             </div>
         </div>
     );

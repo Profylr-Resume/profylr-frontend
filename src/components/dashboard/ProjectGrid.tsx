@@ -1,105 +1,252 @@
 import React from "react";
+import { getRandomColor } from "@/utils/randomColor";
 import { Button } from "../ui/button";
 import ProjectCard from "./ProjectCard";
 
-const projects = {
-    started: [
-        {
-            title: "Web Design",
-            description: "Wireframing, mockups, client collaboration",
-            progress: 56,
-            members: ["/placeholder.svg?height=32&width=32", "/placeholder.svg?height=32&width=32"],
-            comments: 6,
-            attachments: 4
+const projects = [
+    {
+        id:"1",
+        companyName: "Tech Corp",
+        role: "Frontend Developer",
+        jobLink: "https://techcorp.com/careers/frontend-developer",
+        resumeVersion: "Resume_V3.pdf",
+        status: "Applied", // Options: "Applied", "Interviewing", "Offer Received", "Rejected", etc.
+        importantEvents: [
+            {
+                title: "Technical Interview",
+                date: "2024-12-10",
+                description: "Technical interview with the frontend team",
+            },
+            {
+                title: "Follow-Up Email",
+                date: "2024-12-15",
+                description: "Send a follow-up email to HR regarding interview feedback",
+            },
+        ],
+        timeStamps: {
+            applied: "2024-12-01",
+            // applied: "2024-12-01T10:30:00Z",
+            updated: "2024-12-03T15:00:00Z",
         },
-        {
-            title: "App Development",
-            description: "Wireframing, mockups, client collaboration",
-            progress: 65,
-            members: ["/placeholder.svg?height=32&width=32", "/placeholder.svg?height=32&width=32"],
-            comments: 6,
-            attachments: 4
-        }
-    ],
-    ongoing: [
-        {
-            title: "Mobile App",
-            description: "Wireframing, mockups, client collaboration",
-            progress: 30,
-            members: ["/placeholder.svg?height=32&width=32", "/placeholder.svg?height=32&width=32"],
-            comments: 8,
-            attachments: 4
+        expectedFollowUp: {
+            date: "2024-12-15",
+            notes: "Follow up with HR via email to check the status of the application",
         },
-        {
-            title: "Dashboard",
-            description: "Wireframing, mockups, client collaboration",
-            progress: 45,
-            members: ["/placeholder.svg?height=32&width=32", "/placeholder.svg?height=32&width=32"],
-            comments: 6,
-            attachments: 4
-        }
-    ],
-    completed: [
-        {
-            title: "Landing Page",
-            description: "Wireframing, mockups, client collaboration",
-            progress: 100,
-            members: ["/placeholder.svg?height=32&width=32", "/placeholder.svg?height=32&width=32"],
-            comments: 5,
-            attachments: 4
+    },
+    {
+        id:"2",
+        companyName: "Tech Corp",
+        role: "Frontend Developer",
+        jobLink: "https://techcorp.com/careers/frontend-developer",
+        resumeVersion: "Resume_V3.pdf",
+        status: "Applied", // Options: "Applied", "Interviewing", "Offer Received", "Rejected", etc.
+        importantEvents: [
+            {
+                title: "Technical Interview",
+                date: "2024-12-10",
+                description: "Technical interview with the frontend team",
+            },
+            {
+                title: "Follow-Up Email",
+                date: "2024-12-15",
+                description: "Send a follow-up email to HR regarding interview feedback",
+            },
+        ],
+        timeStamps: {
+            applied: "2024-12-01",
+            // applied: "2024-12-01T10:30:00Z",
+            updated: "2024-12-03T15:00:00Z",
         },
-        {
-            title: "Web Development",
-            description: "Wireframing, mockups, client collaboration",
-            progress: 100,
-            members: ["/placeholder.svg?height=32&width=32", "/placeholder.svg?height=32&width=32"],
-            comments: 6,
-            attachments: 4
-        }
-    ]
-};
+        expectedFollowUp: {
+            date: "2024-12-15",
+            notes: "Follow up with HR via email to check the status of the application",
+        },
+    },
+    {
+        id:"3",
+        companyName: "Tech Corp",
+        role: "Frontend Developer",
+        jobLink: "https://techcorp.com/careers/frontend-developer",
+        resumeVersion: "Resume_V3.pdf",
+        status: "Applied", // Options: "Applied", "Interviewing", "Offer Received", "Rejected", etc.
+        importantEvents: [
+            {
+                title: "Technical Interview",
+                date: "2024-12-10",
+                description: "Technical interview with the frontend team",
+            },
+            {
+                title: "Follow-Up Email",
+                date: "2024-12-15",
+                description: "Send a follow-up email to HR regarding interview feedback",
+            },
+        ],
+        timeStamps: {
+            applied: "2024-12-01",
+            // applied: "2024-12-01T10:30:00Z",
+            updated: "2024-12-03T15:00:00Z",
+        },
+        expectedFollowUp: {
+            date: "2024-12-15",
+            notes: "Follow up with HR via email to check the status of the application",
+        },
+    },
+    {
+
+        id:"4",
+        companyName: "Tech Corp",
+        role: "Frontend Developer",
+        jobLink: "https://techcorp.com/careers/frontend-developer",
+        resumeVersion: "Resume_V3.pdf",
+        status: "Applied", // Options: "Applied", "Interviewing", "Offer Received", "Rejected", etc.
+        importantEvents: [
+            {
+                title: "Technical Interview",
+                date: "2024-12-10",
+                description: "Technical interview with the frontend team",
+            },
+            {
+                title: "Follow-Up Email",
+                date: "2024-12-15",
+                description: "Send a follow-up email to HR regarding interview feedback",
+            },
+        ],
+        timeStamps: {
+            applied: "2024-12-01",
+            // applied: "2024-12-01T10:30:00Z",
+            updated: "2024-12-03T15:00:00Z",
+        },
+        expectedFollowUp: {
+            date: "2024-12-15",
+            notes: "Follow up with HR via email to check the status of the application",
+        },
+    },
+    {
+        id:"5",
+        companyName: "Tech Corp",
+        role: "Frontend Developer",
+        jobLink: "https://techcorp.com/careers/frontend-developer",
+        resumeVersion: "Resume_V3.pdf",
+        status: "Applied", // Options: "Applied", "Interviewing", "Offer Received", "Rejected", etc.
+        importantEvents: [
+            {
+                title: "Technical Interview",
+                date: "2024-12-10",
+                description: "Technical interview with the frontend team",
+            },
+            {
+                title: "Follow-Up Email",
+                date: "2024-12-15",
+                description: "Send a follow-up email to HR regarding interview feedback",
+            },
+        ],
+        timeStamps: {
+            applied: "2024-12-01",
+            // applied: "2024-12-01T10:30:00Z",
+            updated: "2024-12-03T15:00:00Z",
+        },
+        expectedFollowUp: {
+            date: "2024-12-15",
+            notes: "Follow up with HR via email to check the status of the application",
+        },
+    },
+    {
+        id:"6",
+        companyName: "Tech Corp",
+        role: "Frontend Developer",
+        jobLink: "https://techcorp.com/careers/frontend-developer",
+        resumeVersion: "Resume_V3.pdf",
+        status: "Applied", // Options: "Applied", "Interviewing", "Offer Received", "Rejected", etc.
+        importantEvents: [
+            {
+                title: "Technical Interview",
+                date: "2024-12-10",
+                description: "Technical interview with the frontend team",
+            },
+            {
+                title: "Follow-Up Email",
+                date: "2024-12-15",
+                description: "Send a follow-up email to HR regarding interview feedback",
+            },
+        ],
+        timeStamps: {
+            applied: "2024-12-01",
+            // applied: "2024-12-01T10:30:00Z",
+            updated: "2024-12-03T15:00:00Z",
+        },
+        expectedFollowUp: {
+            date: "2024-12-15",
+            notes: "Follow up with HR via email to check the status of the application",
+        },
+    },
+    {
+        id:"7",
+        companyName: "Tech Corp",
+        role: "Frontend Developer",
+        jobLink: "https://techcorp.com/careers/frontend-developer",
+        resumeVersion: "Resume_V3.pdf",
+        status: "Applied", // Options: "Applied", "Interviewing", "Offer Received", "Rejected", etc.
+        importantEvents: [
+            {
+                title: "Technical Interview",
+                date: "2024-12-10",
+                description: "Technical interview with the frontend team",
+            },
+            {
+                title: "Follow-Up Email",
+                date: "2024-12-15",
+                description: "Send a follow-up email to HR regarding interview feedback",
+            },
+        ],
+        timeStamps: {
+            applied: "2024-12-01",
+            // applied: "2024-12-01T10:30:00Z",
+            updated: "2024-12-03T15:00:00Z",
+        },
+        expectedFollowUp: {
+            date: "2024-12-15",
+            notes: "Follow up with HR via email to check the status of the application",
+        },
+    },
+    {
+        id:"8",
+        companyName: "Tech Corp",
+        role: "Frontend Developer",
+        jobLink: "https://techcorp.com/careers/frontend-developer",
+        resumeVersion: "Resume_V3.pdf",
+        status: "Applied", // Options: "Applied", "Interviewing", "Offer Received", "Rejected", etc.
+        importantEvents: [
+            {
+                title: "Technical Interview",
+                date: "2024-12-10",
+                description: "Technical interview with the frontend team",
+            },
+            {
+                title: "Follow-Up Email",
+                date: "2024-12-15",
+                description: "Send a follow-up email to HR regarding interview feedback",
+            },
+        ],
+        timeStamps: {
+            applied: "2024-12-01",
+            // applied: "2024-12-01T10:30:00Z",
+            updated: "2024-12-03T15:00:00Z",
+        },
+        expectedFollowUp: {
+            date: "2024-12-15",
+            notes: "Follow up with HR via email to check the status of the application",
+        },
+    },
+];
+
 
 const ProjectGrid = () => {
     return (
-        <div className="grid grid-cols-3 gap-6">
-            <div>
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-white">Started</h3>
-                    <Button variant="ghost" size="icon" className="text-purple-500">
-                +
-                    </Button>
-                </div>
-                <div className="space-y-4">
-                    {projects.started.map((project) => (
-                        <ProjectCard key={project.title} project={project} />
-                    ))}
-                </div>
-            </div>
-            <div>
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-white">On Going</h3>
-                    <Button variant="ghost" size="icon" className="text-purple-500">
-                +
-                    </Button>
-                </div>
-                <div className="space-y-4">
-                    {projects.ongoing.map((project) => (
-                        <ProjectCard key={project.title} project={project} />
-                    ))}
-                </div>
-            </div>
-            <div>
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-white">Completed</h3>
-                    <Button variant="ghost" size="icon" className="text-purple-500">
-                +
-                    </Button>
-                </div>
-                <div className="space-y-4">
-                    {projects.completed.map((project) => (
-                        <ProjectCard key={project.title} project={project} />
-                    ))}
-                </div>
+        <div className="h-full w-full ">
+            <div className="grid grid-cols-3 gap-6 h-full w-full overflow-y-auto " >
+                {projects.map((project) => (
+                    <ProjectCard key={project.id} jobApplication={project} selectedColor={getRandomColor()} />
+                ))} 
             </div>
         </div>
     );
