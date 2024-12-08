@@ -13,6 +13,8 @@ import { checkAuth } from "./redux/features/authSlice";
 import ProtectedLayout from "./layout/ProtectedLayout";
 import ChooseDirection from "./pages/ChooseDirection";
 import Dashboard from "./pages/Dashboard";
+import ProfylrLayout from "./layout/ProfylrLayout";
+import ResumeTimeline from "./pages/ResumeTimeline";
 
 const  App = ()=> {
     const dispatch = useDispatch();
@@ -27,7 +29,10 @@ const  App = ()=> {
                 <Route path="/" element={<RootLayout/>} >
                     <Route path="/login" element={<Login/>} />
                     <Route path="/register" element={<Register/>} />
-                    <Route path="/dashboard" element={<Dashboard/>} />
+                    <Route element={<ProfylrLayout/>} >
+                        <Route path="/dashboard" element={<Dashboard/>} />
+                        <Route path="/timeline" element={<ResumeTimeline/>} />
+                    </Route>
                     <Route  element={<ProtectedLayout/>} >
                         <Route path="/template" element={<TemplateAdmin />} />
                         <Route path="/section" element={<ResumeSection />} />

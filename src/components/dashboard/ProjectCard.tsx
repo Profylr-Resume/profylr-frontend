@@ -30,9 +30,9 @@ const ProjectCard = ({jobApplication,selectedColor}:ProjectCardProps) => {
             <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between ">
                     <div 
-                        className="px-4 py-[2px] rounded-full border " 
+                        className="px-4 py-[3px] rounded-full  " 
                         style={{
-                            borderColor: `${givenColor500}`,
+                            // borderColor: `${givenColor500}`,
                             backgroundColor: `${givenColor100}`
                         }}
                     >
