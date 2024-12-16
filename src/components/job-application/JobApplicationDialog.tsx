@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import BasicDetails from './BasicDetails';
-import StatusTrajectory from './StatusTrajectory';
-import MiscEvents from './MiscEvents';
-import NotesSection from './NotesSection';
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import BasicDetails from "./BasicDetails";
+import StatusTrajectory from "./StatusTrajectory";
+import MiscEvents from "./MiscEvents";
+import NotesSection from "./NotesSection";
 
 const JobApplicationDialog = () => {
     const [open, setOpen] = useState(false);
