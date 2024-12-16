@@ -243,7 +243,7 @@ const projects = [
 const ProjectGrid = () => {
     return (
         <div className="h-full w-full ">
-            <div className="grid grid-cols-3 gap-6 h-full w-full overflow-y-auto " >
+            <div className="grid grid-cols-3 gap-6 h-full w-full overflow-y-auto custom-scrollbar " >
                 {projects.map((project) => (
                     <ProjectCard key={project.id} jobApplication={project} selectedColor={getRandomColor()} />
                 ))} 

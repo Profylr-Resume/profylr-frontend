@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { toast } from "react-toastify";
-import { TemplateType } from "@/models/template.type";
+import { TemplateType } from "@/types/template.interface";
 import { templateValidation } from "@/validations/templateValidationSchema";
 import { FormControl, TextField } from "@mui/material";
 import { blackButton } from "@/css/buttons";

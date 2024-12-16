@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User } from "@/models/user.interface";
+import { User } from "@/types/user.interface";
 import Cookies from "js-cookie";
 
 const BASE_URL=import.meta.env.VITE_BACKEND_BASE_URL;

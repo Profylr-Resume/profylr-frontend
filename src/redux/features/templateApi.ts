@@ -1,5 +1,5 @@
 
-import { TemplateType } from "@/models/template.type";
+import { TemplateType } from "@/types/template.interface";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const BASE_URL=import.meta.env.VITE_BACKEND_BASE_URL;

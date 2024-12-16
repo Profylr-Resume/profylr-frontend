@@ -1,4 +1,4 @@
-import { TemplateType } from "@/models/template.type";
+import { TemplateType } from "@/types/template.interface";
 import { useGetAllTemplatesQuery } from "@/redux/features/templateApi";
 import React, { useEffect, useState } from "react";
 

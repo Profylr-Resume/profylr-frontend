@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { login } from "@/redux/features/authSlice";
 import { useEffect } from "react";
-import { AuthState } from "@/models/authState.interface";
+import { AuthState } from "@/types/authState.interface";
 import { useLoginUsingTokenMutation } from "@/redux/features/authApi";
 import { RootState } from "../redux/store";
 

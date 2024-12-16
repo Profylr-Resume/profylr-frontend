@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import template1Thumbnail from "../../assets/images/template1.jpeg";
 import { Button } from "../ui/button";
-import { TemplateType } from "../../models/template.type";
+import { TemplateType } from "../../types/template.interface";
 
 
 const SingleTemplate:React.FC<TemplateType> = ({template}) => {

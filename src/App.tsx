@@ -15,6 +15,7 @@ import ChooseDirection from "./pages/ChooseDirection";
 import Dashboard from "./pages/Dashboard";
 import ProfylrLayout from "./layout/ProfylrLayout";
 import ResumeTimeline from "./pages/ResumeTimeline";
+import "react-datepicker/dist/react-datepicker.css";
 
 const  App = ()=> {
     const dispatch = useDispatch();

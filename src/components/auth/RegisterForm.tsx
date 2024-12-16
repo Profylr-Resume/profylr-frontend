@@ -4,7 +4,7 @@ import registerValidationSchema from "@/validations/registerValidationSchema";
 import { useNavigate } from "react-router-dom";
 
 import useRegisterUser from "@/hooks/useRegisterUser";
-import { User } from "@/models/user.interface";
+import { User } from "@/types/user.interface";
 
 
 const RegisterForm = () => {

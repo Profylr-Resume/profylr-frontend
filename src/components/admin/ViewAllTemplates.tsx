@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import GenerateResume from "@/pages/GenerateResume";
 import { templateSettings } from "lodash";
 import { useGetAllTemplatesQuery } from "@/redux/features/templateApi";
-import { TemplateType } from "@/models/template.type";
+import { TemplateType } from "@/types/template.interface";
 import template1Thumbnail from "../../assets/images/template1.jpeg";
 import { Button } from "../ui/button";
 

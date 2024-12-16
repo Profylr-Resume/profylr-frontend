@@ -1,5 +1,5 @@
 import { blackButton } from "@/css/buttons";
-import { SectionType } from "@/models/resumeSection.type";
+import { SectionType } from "@/types/resumeSection.interface";
 import { useCreateSectionMutation } from "@/redux/features/resumeSectionSlice";
 import { sectionValidationSchema } from "@/validations/sectionValidationSchema";
 import { Field, Form, Formik, FormikHelpers } from "formik";

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CalendarClock, Ellipsis, ExternalLink, FileUser} from "lucide-react";
 
 import { Card } from "@/components/ui/card";
-import { JobApplication } from "@/models/jobApplication";
+import { JobApplication } from "@/types/jobApplication";
 
 interface ProjectCardProps {
     jobApplication: JobApplication;

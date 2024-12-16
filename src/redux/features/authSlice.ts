@@ -1,4 +1,4 @@
-import { AuthState } from "@/models/authState.interface";
+import { AuthState } from "@/types/authState.interface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 

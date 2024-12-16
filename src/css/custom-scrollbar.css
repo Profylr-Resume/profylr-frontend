@@ -1,0 +1,19 @@
+/* Define the custom scrollbar style */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #3d689f; /* Use your theme color */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+/* For Firefox */
+.custom-scrollbar {
+    scrollbar-width: thin; /* Makes scrollbar thinner */
+    scrollbar-color: #000000b8 #f1f1f1; /* Thumb and track colors */
+}

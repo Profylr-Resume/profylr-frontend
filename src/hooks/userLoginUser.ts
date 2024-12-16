@@ -1,4 +1,4 @@
-import { User } from "@/models/user.interface";
+import { User } from "@/types/user.interface";
 import { useLoginMutation } from "@/redux/features/authApi";
 import { login } from "@/redux/features/authSlice";
 import { FormikHelpers } from "formik";

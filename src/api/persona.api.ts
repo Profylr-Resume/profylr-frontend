@@ -1,4 +1,4 @@
-import { PersonaType } from "@/models/persona.interface";
+import { PersonaType } from "@/types/persona.interface";
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;

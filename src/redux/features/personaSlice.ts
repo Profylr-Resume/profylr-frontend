@@ -1,5 +1,5 @@
 import { createPersonaApi, deletePersonaApi, getPersonalizedTemplateStructureApi } from "@/api/persona.api";
-import { PersonaType } from "@/models/persona.interface";
+import { PersonaType } from "@/types/persona.interface";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 

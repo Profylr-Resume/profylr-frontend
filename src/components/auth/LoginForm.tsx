@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import loginValidationSchema from "@/validations/loginValidationSchema";
 import { useNavigate } from "react-router-dom";
 import useLoginUser from "@/hooks/userLoginUser";
-import { User } from "../../models/user.interface";
+import { User } from "../../types/user.interface";
 
 const LoginForm = () => {
 

@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage, FieldProps, FormikHelpers } from "fo
 import { personaValidationSchema } from "@/validations/personaValidationSchema";
 import { personalizedTemplateStrutureThunk, PersonaState } from "@/redux/features/personaSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { PersonaType } from "@/models/persona.interface";
+import { PersonaType } from "@/types/persona.interface";
 import { possibleTargetRoles } from "@/assets/static/availableTargetRoles";
 import { possibleStrengthOptions } from "@/assets/static/availableStrengthOptions";
 import { possibleGoalOptions } from "@/assets/static/availableGoalOptions";
