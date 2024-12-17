@@ -7,10 +7,10 @@ import { Progress } from "@/components/ui/progress";
 
 const StatsPannel = () => {
     return (
-        <div className="h-full w-full p-4">
-            <div className="">
-                <div className="flex flex-col  gap-4" >
-                    <h3 className="text-lg font-semibold text-black mb-4">JOB APPLICATIONS</h3>
+        <div className="h-full w-full ">
+            <div className="h-full w-full flex items-center justify-evenly flex-col ">
+                <div className="flex flex-col items-center justify-center gap-2 " >
+                    <h3 className="text-lg font-semibold text-black ">JOB APPLICATIONS</h3>
                     <div className=" ">
                         <div className=" flex items-center justify-center">
                             <div className="text-center">
@@ -20,7 +20,7 @@ const StatsPannel = () => {
                         {/* <Progress value={72} className="h-40 w-40 rounded-full bg-red-800" /> */}
                     </div>
                 </div>
-                <Card className="shaodw-xl  p-4">
+                <Card className="shaodw-xl p-4">
                     <h4 className="font-semibold text-black mb-3">STATS</h4>
                     <div className="grid grid-cols-2 gap-4">
                         <div>

@@ -32,7 +32,7 @@ interface DateSlot {
     bounds?:{ x: number; y: number; top: number; bottom: number; left: number; right: number; } | undefined
 }
 
-const calendarEvents = [
+const calendarEvents:CalendarEvent[] = [
     {
         id: "1",
         title: "Meeting with Bob",

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CalendarEvent } from "@/types/calendarEvent.interface";
+import AddEventForm from "./AddEventForm";
 
 interface AddEventDialogProps {
     isOpen: boolean
@@ -32,25 +33,11 @@ const AddEventDialog:React.FC<AddEventDialogProps> = ({ isOpen, onClose, onAdd }
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent>
+            <DialogContent className="max-w-[60rem] h-[40rem] " >
                 <DialogHeader>
                     <DialogTitle>Add New Event</DialogTitle>
                 </DialogHeader>
-                <div className="space-y-4">
-                    <Input 
-                        placeholder="Event Title" 
-                        value={title} 
-                        onChange={(e) => setTitle(e.target.value)} 
-                    />
-                    <Textarea 
-                        placeholder="Event Description" 
-                        value={description} 
-                        onChange={(e) => setDescription(e.target.value)} 
-                    />
-                </div>
-                <DialogFooter>
-                    <Button onClick={handleSubmit}>Add Event</Button>
-                </DialogFooter>
+                <AddEventForm/>
             </DialogContent>
         </Dialog>
     );

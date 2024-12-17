@@ -26,7 +26,7 @@ const EventCard = ({ event, onDelete, onUpdate }:EventCardProps)=> {
             <div>
                 <div className="flex justify-between " >
                     <div className="flex flex-col" >
-                        <p className="text-md font-medium text-gray-700 " >{event.description}</p>
+                        <p className="text-base font-medium text-gray-700 " >{event.description}</p>
                         <p className="text-sm italic text-muted-foreground mt-2">Created: {new Date(event.createdAt).toLocaleString()}</p>
                         <p className="text-sm italic text-muted-foreground">Last Updated: {new Date(event.updatedAt).toLocaleString()}</p>
                     </div>

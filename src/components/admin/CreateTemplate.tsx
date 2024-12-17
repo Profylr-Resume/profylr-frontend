@@ -163,7 +163,7 @@ const CreateTemplate = () => {
                                         id="html"
                                         name="html"
                                         rows={4}
-                                        className="text-md  font-medium tracking-wide mt-1 block w-full px-3 py-2 rounded-xl border-0 bg-[rgba(255,255,255,0.3)] bg-opacity-50 backdrop-blur-md shadow-lg"
+                                        className="text-base  font-medium tracking-wide mt-1 block w-full px-3 py-2 rounded-xl border-0 bg-[rgba(255,255,255,0.3)] bg-opacity-50 backdrop-blur-md shadow-lg"
                                     />
                                 </div>
                             </div>

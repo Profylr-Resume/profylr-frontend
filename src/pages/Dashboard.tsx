@@ -12,7 +12,7 @@ const Dashboard = () => {
     return (
         <div className="h-full w-full flex" >
 
-            <div className="h-full w-full  pr-10 pb-6 pt-2 ">
+            <div className="h-full w-[90%] pt-2 pr-2 pb-4 ">
                 <div className="h-full w-full bg-white rounded-[2rem]" >
                     <div className="w-full h-[10%] rounded-t-[2rem] "  >
                         <ProjectGridHeader />
@@ -24,7 +24,7 @@ const Dashboard = () => {
                 </div>
             </div>
               
-            <div className="h-full w-[20%]  flex flex-col justify-between pt-2 pb-6" >
+            <div className="h-full w-[20%]  flex flex-col justify-between pt-2 pb-4  pl-2 " >
                 <div className="h-[54%] w-full bg-white rounded-[2rem] ">
                     <StatsPannel />
                 </div>

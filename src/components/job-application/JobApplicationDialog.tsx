@@ -5,11 +5,10 @@ import StatusTrajectory from "./StatusTrajectory";
 import MiscEvents from "./MiscEvents";
 import NotesSection from "./NotesSection";
 
-const JobApplicationDialog = () => {
-    const [open, setOpen] = useState(false);
+const JobApplicationDialog = ({open,toggleDialog}:{open:boolean,toggleDialog:()=>void}) => {
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={toggleDialog}>
             <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>Job Application Details</DialogTitle>

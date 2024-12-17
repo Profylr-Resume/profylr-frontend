@@ -9,13 +9,13 @@ const ProfylrLayout = () => {
             <section className="h-full w-[4.5%]" >
                 <MainNav />
             </section>
-            <section className="h-full w-[95.5%] flex flex-col px-10">
-                <div className="h-[14%] w-full  py-4  " >
-                    <div className="h-full w-full rounded-[2rem] " >
+            <section className="h-full w-[95.5%] flex flex-col px-8 gap-3">
+                <div className="h-[10%] w-full  py-2 " >
+                    <div className="h-full w-full" >
                         <DashboardHeader/>
                     </div>
                 </div>
-                <div className="h-[86%] w-full flex" >
+                <div className="h-[88%] w-full flex" >
                     <Outlet/>
                 </div>
             </section>
